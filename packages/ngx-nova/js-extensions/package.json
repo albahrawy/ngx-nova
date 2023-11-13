@@ -1,0 +1,19 @@
+{
+  "name": "@ngx-nova/js-extensions",
+  "version": "4.0.0",
+  "description": "A versatile utility library in TypeScript that provides a collection of helpful functions and tools to simplify common tasks, handle data manipulation, and enhance code readability.",
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albahrawy/ngx-nova"
+  },
+  "author": "Ahmed Albahrawy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/albahrawy/ngx-nova/issues"
+  },
+  "homepage": "https://github.com/albahrawy/ngx-nova"
+}
