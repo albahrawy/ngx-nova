@@ -1,0 +1,19 @@
+{
+  "name": "@ngx-nova/ts-parser",
+  "version": "4.0.0",
+  "description": "A tool that helps you write code in the latest version of JavaScript/TypeScript in any text control or editor like <texarea/> or monaco editor ...etc. and compile this string to a real JavaScript runnable code.",
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albahrawy/ngx-nova"
+  },
+  "author": "Ahmed Albahrawy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/albahrawy/ngx-nova/issues"
+  },
+  "homepage": "https://github.com/albahrawy/ngx-nova"
+}
