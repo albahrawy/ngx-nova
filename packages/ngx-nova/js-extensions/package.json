@@ -11,6 +11,7 @@
     "url": "git+https://github.com/albahrawy/ngx-nova.git"
   },
   "author": "Ahmed Albahrawy",
+  "private": false,
   "license": "MIT",
   "keywords": [
     "angular",
@@ -22,5 +23,5 @@
   "bugs": {
     "url": "https://github.com/albahrawy/ngx-nova/issues"
   },
-  "homepage": "https://github.com/albahrawy/ngx-nova/js-extensions"
+  "homepage": "https://github.com/albahrawy/ngx-nova/tree/main/packages/ngx-nova/js-extensions"
 }
