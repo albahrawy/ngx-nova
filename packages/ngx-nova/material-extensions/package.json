@@ -1,0 +1,27 @@
+{
+  "name": "@ngx-nova/material-extensions",
+  "version": "4.0.0",
+  "description": "",
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albahrawy/ngx-nova.git"
+  },
+  "author": "Ahmed Albahrawy",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "angular material",
+    "angular components"
+  ],
+  "bugs": {
+    "url": "https://github.com/albahrawy/ngx-nova/issues"
+  },
+  "homepage": "https://github.com/albahrawy/ngx-nova/tree/main/packages/ngx-nova/material-extensions"
+}

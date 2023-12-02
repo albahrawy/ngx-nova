@@ -1,0 +1,34 @@
+{
+  "name": "@ngx-nova/material-extensions-table-virtual-scroll",
+  "version": "2.0.2",
+  "description": "An Extension adding virtual scroll feature to Mat-Table",
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^17.0.0",
+    "@angular/material": "^17.0.0",
+    "@angular/core": "^17.0.0"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albahrawy/ngx-nova.git"
+  },
+  "author": "Ahmed Albahrawy",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "angular material",
+    "angular components",
+    "mat-table",
+    "virtual scroll"
+  ],
+  "bugs": {
+    "url": "https://github.com/albahrawy/ngx-nova/issues"
+  },
+  "homepage": "https://github.com/albahrawy/ngx-nova/tree/main/packages/ngx-nova/material-extensions/table/virtual-scroll"
+}

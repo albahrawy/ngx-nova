@@ -6,6 +6,12 @@
       "@ngx-nova/js-extensions": [
         "./dist/ngx-nova/js-extensions"
       ],
+      "@ngx-nova/material-extensions": [
+        "./dist/ngx-nova/material-extensions"
+      ],
+      "@ngx-nova/material-extensions/*": [
+        "./dist/ngx-nova/material-extensions/*"
+      ],
       "@ngx-nova/ts-parser": [
         "./dist/ngx-nova/ts-parser"
       ]

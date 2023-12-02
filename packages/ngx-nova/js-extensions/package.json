@@ -1,6 +1,6 @@
 {
   "name": "@ngx-nova/js-extensions",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A versatile utility library in TypeScript that provides a collection of helpful functions and tools to simplify common tasks, handle data manipulation, and enhance code readability.",
   "dependencies": {
     "tslib": "^2.6.2"
@@ -23,5 +23,7 @@
   "bugs": {
     "url": "https://github.com/albahrawy/ngx-nova/issues"
   },
-  "homepage": "https://github.com/albahrawy/ngx-nova/tree/main/packages/ngx-nova/js-extensions"
+  "homepage": "https://github.com/albahrawy/ngx-nova/tree/main/packages/ngx-nova/js-extensions",
+  "main": "bundles/index.umd.js",
+  "module": "fesm2022/ngx-nova-js-extensions.mjs"
 }
