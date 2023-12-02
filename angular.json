@@ -3,39 +3,6 @@
   "version": 1,
   "newProjectRoot": "packages",
   "projects": {
-    "@ngx-nova/js-extensions": {
-      "projectType": "library",
-      "root": "packages/ngx-nova/js-extensions",
-      "sourceRoot": "packages/ngx-nova/js-extensions/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "packages/ngx-nova/js-extensions/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
     "app-demo": {
       "projectType": "application",
       "schematics": {
@@ -126,6 +93,138 @@
               "packages/app-demo/src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "@ngx-nova/material-extensions": {
+      "projectType": "library",
+      "root": "packages/ngx-nova/material-extensions",
+      "sourceRoot": "packages/ngx-nova/material-extensions/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "packages/ngx-nova/material-extensions/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-nova/material-extensions/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-nova/material-extensions/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "packages/ngx-nova/material-extensions/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-nova/material-extensions-table": {
+      "projectType": "library",
+      "root": "packages/ngx-nova/material-extensions/table",
+      "sourceRoot": "packages/ngx-nova/material-extensions/table/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "packages/ngx-nova/material-extensions/table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-nova/material-extensions/table/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-nova/material-extensions/table/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "packages/ngx-nova/material-extensions/table/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-nova/material-extensions-table-virtual-scroll": {
+      "projectType": "library",
+      "root": "packages/ngx-nova/material-extensions/table/virtual-scroll",
+      "sourceRoot": "packages/ngx-nova/material-extensions/table/virtual-scroll/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "packages/ngx-nova/material-extensions/table/virtual-scroll/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-nova/material-extensions/table/virtual-scroll/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-nova/material-extensions/table/virtual-scroll/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "packages/ngx-nova/material-extensions/table/virtual-scroll/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-nova/js-extensions": {
+      "projectType": "library",
+      "root": "packages/ngx-nova/js-extensions",
+      "sourceRoot": "packages/ngx-nova/js-extensions/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "packages/ngx-nova/js-extensions/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "packages/ngx-nova/js-extensions/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
