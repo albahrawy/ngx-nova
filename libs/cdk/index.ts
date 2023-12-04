@@ -1,0 +1,1 @@
+export const NOVA_CDK = '@ngx-nova/cdk';

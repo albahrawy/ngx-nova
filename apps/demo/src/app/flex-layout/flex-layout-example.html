@@ -1,0 +1,29 @@
+<h2>Flex Layout</h2>
+<div class="form-div">
+    <div layout-flex="row wrap" flex-gap="5px" flex-limit layout-flex-align="start" flex-gap-md="10px"
+        flex-gap-xs="1px">
+        @for (item of config; track $index)
+        {
+        <div class="flex-box-example" layout-flex-element [flex-basis]="item.regualrBase" [flex-basis-xs]="item.xsBase"
+            [flex-basis-sm]="item.mdBase" [flex-order]="item.order">
+            <span>Flex Layout Box {{item.index}}</span>
+            <div class="item-button-area">
+                <button mat-button="stroked" color="primary" (click)="shufflePlace(item)">Shuffle Place</button>
+                <button mat-button="stroked" color="primary" (click)="item.regualrBase=50">50%</button>
+                <button mat-button="stroked" color="primary" (click)="item.regualrBase=33.33">33.33%</button>
+                <button mat-button="stroked" color="primary" (click)="item.regualrBase='auto'">Auto</button>
+            </div>
+        </div>
+        }
+    </div>
+
+</div>
+<div class="button-area">
+    <!-- <button mat-button="stroked" color="primary" (click)="numberMask='9-9-99-77'">Change Number Mask</button>
+    <button mat-button="stroked" color="primary" (click)="allowClear=!allowClear">Toggle AllowClear</button>
+    <button mat-button="stroked" color="primary" (click)="showButtons=!showButtons">Toggle Numberic Buttons</button>
+    <button mat-button="stroked" color="primary" (click)="toggleReadOnly()">Toggle ReadOnly</button>
+    <button mat-button="stroked" color="primary" (click)="toggleDisabled()">Toggle Disbale</button>
+    <button mat-button="stroked" color="primary" (click)="toggleFormat()">Toggle Date Format</button> -->
+
+</div>

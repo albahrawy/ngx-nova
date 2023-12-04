@@ -1,0 +1,33 @@
+<mat-nav-list role="list" class="list-area">
+    <button mat-stroked-button (click)="changeLang()">{{reqtLang.name}}</button>
+    <div matSubheader class="group-header">CDK</div>
+    <a mat-list-item role="listitem" routerLink="/flex-layout" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Flex Layout</a>
+    <a mat-list-item role="listitem" routerLink="/progress-overlay" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Progress Overlay</a>
+    <div matSubheader class="group-header">Component Extensions</div>
+    <a mat-list-item role="listitem" routerLink="/mat-inputs-extensions" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Inputs</a>
+    <a mat-list-item role="listitem" routerLink="/nova-select-example" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Select</a>
+    <a mat-list-item role="listitem" routerLink="/progress-overlay" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Progress Overlay</a>
+    <a mat-list-item role="listitem" routerLink="/mat-list-seelction-virtual" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Virtual Selection List</a>
+    <mat-divider></mat-divider>
+    <div matSubheader class="group-header">Cdk Table Extension</div>
+    <a mat-list-item role="listitem" routerLink="/cdk-table-virtual-scroll" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Cdk Table</a>
+    <a mat-list-item role="listitem" routerLink="/mat-table-virtual-scroll" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Mat Table</a>
+    <mat-divider></mat-divider>
+    <div matSubheader class="group-header">Fast Report</div>
+    <a mat-list-item role="listitem" routerLink="/fast-report-designer" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Design</a>
+    <a mat-list-item role="listitem" routerLink="/fast-report-view" routerLinkActive="active"
+        ariaCurrentWhenActive="page">View</a>
+</mat-nav-list>
+<div class="separator-area"></div>
+<div class="view-area">
+    <router-outlet></router-outlet>
+</div>

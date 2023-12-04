@@ -1,0 +1,1 @@
+export const NOVA_TABLE_EXTENSIONS = '@ngx-nova/table-extensions';

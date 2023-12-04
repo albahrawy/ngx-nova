@@ -1,0 +1,82 @@
+$element-sizes: xs sm md lg xl sl;
+$base-variable: var(--layout-flex-basis, auto);
+$align-content: start end center space-between space-around space-evenly;
+$align-items: start end center baseline stretch;
+
+@mixin flex-layout($direction) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+
+    &[layout-flex~="reverse"] {
+        flex-direction: #{$direction}-reverse;
+    }
+
+    &[layout-flex~="wrap"] {
+        flex-wrap: wrap;
+    }
+
+    &[flex-gap] {
+        gap: var(--layout-flex-gap, inherit);
+    }
+}
+
+[layout-flex^="row"] {
+    @include flex-layout(row);
+
+    [layout-flex-element] {
+        flex-grow: 1;
+        flex-shrink: 1;
+        box-sizing: border-box;
+
+        flex-basis: $base-variable;
+    }
+
+    @each $size in $element-sizes {
+        &.layout-flex-container-#{$size} {
+            [layout-flex-element] {
+                --nova-flex-basis-value: var(--layout-flex-basis-#{$size}, #{$base-variable});
+                flex-basis: var(--nova-flex-basis-value);
+            }
+
+            &[flex-gap] {
+                gap: var(--layout-flex-gap-#{$size}, var(--layout-flex-gap, inherit));
+
+                [layout-flex-element] {
+                    --nova-flex-basis-value: calc(var(--layout-flex-basis-#{$size}, #{$base-variable}) - var(--layout-flex-gap-#{$size}, var(--layout-flex-gap, inherit)));
+                }
+            }
+
+            &[flex-limit] {
+                [layout-flex-element] {
+                    max-width: var(--nova-flex-basis-value);
+                }
+            }
+        }
+    }
+}
+
+[layout-flex^="column"] {
+    @include flex-layout(column);
+}
+
+@each $align in $align-content {
+    [layout-flex-align^="#{$align}"] {
+        @if $align =='start' or $align =='end' {
+            $align: flex-#{$align};
+        }
+
+        justify-content: #{$align};
+    }
+}
+
+@each $align in $align-items {
+    [layout-flex-align$=" #{$align}"] {
+        @if $align =='start' or $align =='end' {
+            $align: flex-#{$align};
+        }
+
+        align-items: #{$align};
+    }
+}

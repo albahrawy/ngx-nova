@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+
+    .list-area {
+        min-width: 250px;
+        max-width: 250px;
+        border: 1px solid rgb(193, 197, 255);
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .26);
+        }
+
+        .active{
+            background-color: lightblue;
+        }
+    }
+
+    .separator-area {
+        width: 10px;
+    }
+
+    .group-header {
+        font-weight: bold;
+    }
+
+    .view-area {
+        padding: 10px;
+        flex: 1 1 auto;
+        border: 1px solid rgb(193, 197, 255);
+        box-sizing: border-box;
+        display: flex;
+        justify-items: stretch;
+    }
+}

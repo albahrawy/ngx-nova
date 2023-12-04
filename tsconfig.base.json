@@ -1,0 +1,63 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ngx-nova/cdk": [
+        "libs/cdk/index.ts"
+      ],
+      "@ngx-nova/cdk/error-handler": [
+        "libs/cdk/error-handler/index.ts"
+      ],
+      "@ngx-nova/cdk/flex-layout": [
+        "libs/cdk/flex-layout/index.ts"
+      ],
+      "@ngx-nova/cdk/format": [
+        "libs/cdk/format/index.ts"
+      ],
+      "@ngx-nova/cdk/http": [
+        "libs/cdk/http/index.ts"
+      ],
+      "@ngx-nova/cdk/localization": [
+        "libs/cdk/localization/index.ts"
+      ],
+      "@ngx-nova/cdk/observers": [
+        "libs/cdk/observers/index.ts"
+      ],
+      "@ngx-nova/cdk/shared": [
+        "libs/cdk/shared/src/index.ts"
+      ],
+      "@ngx-nova/js-extensions": [
+        "libs/js-extensions/src/index.ts"
+      ],
+      "@ngx-nova/mat-extensions": [
+        "libs/mat-extensions/index.ts"
+      ],
+      "@ngx-nova/table-extensions": [
+        "libs/table-extensions/index.ts"
+      ],
+      "@ngx-nova/table-extensions/virtual-scroll": [
+        "libs/table-extensions/virtual-scroll/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}
