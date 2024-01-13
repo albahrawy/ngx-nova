@@ -1,0 +1,140 @@
+//TODO: think about button sizes
+.input-button {
+    &.input-read-only {
+        .input-button-inline {
+            color: var(--mdc-icon-button-readonly-icon-color, var(--mdc-icon-button-disabled-icon-color));
+            pointer-events: none;
+            cursor: default;
+        }
+    }
+
+    .input-button-inline {
+        --nova-inline-button-size: calc(var(--mdc-icon-button-state-layer-size, 48px)/1.8);
+        padding: 0 !important;
+        min-width: 0 !important;
+        height: var(--nova-inline-button-size) !important;
+        width: var(--nova-inline-button-size) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .input-button-icon {
+            --nova-inline-button-icon-size: calc(var(--nova-inline-button-size, 48px)/1.2);
+            margin: 0 !important;
+            font-size: var(--nova-inline-button-icon-size) !important;
+            height: var(--nova-inline-button-icon-size) !important;
+            width: var(--nova-inline-button-icon-size) !important;
+            padding: 0 !important;
+        }
+
+        .mat-mdc-button-touch-target {
+            --nova-inline-button-size: calc(var(--mdc-icon-button-state-layer-size, 48px)/1.8);
+            height: var(--nova-inline-button-size) !important;
+            width: var(--nova-inline-button-size) !important;
+        }
+    }
+}
+
+.input-button.num-input-buttons {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding-right: 1px;
+
+    .input-button-inline {
+        .input-button-icon {
+            --nova-number-button-icon-size: calc(var(--nova-number-button-size, 48px));
+        }
+    }
+
+    &.vertical-buttons {
+        flex-direction: row;
+    }
+}
+
+.mat-mdc-text-field-wrapper:has(.input-button) {
+    padding-right: 4px;
+
+    [dir='rtl'] & {
+        padding-right: 16px;
+        padding-left: 4px;
+    }
+}
+
+.nova-datepicker-control {
+    display: flex;
+}
+
+.date-range-picker-no-mat-field,
+.date-picker-no-mat-field,
+.input-with-button-no-mat-field {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.date-picker-no-mat-field,
+.input-with-button-no-mat-field {
+    input {
+        flex: 1 1 auto;
+        box-sizing: border-box;
+        padding: 6px;
+        border: .5px solid lightgray;
+    }
+}
+
+.date-range-picker-no-mat-field {
+    justify-content: center;
+
+    nova-date-range-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6px;
+        box-sizing: border-box;
+        border: .5px solid lightgray;
+
+        &.--focused {
+            outline: auto;
+        }
+    }
+}
+
+.date-range-picker-no-mat-field,
+//.mat-datepicker-toggle,
+.date-picker-no-mat-field {
+    .mdc-icon-button {
+        --nova-inline-button-size: calc(var(--mdc-icon-button-state-layer-size, 48px)/1.8);
+        padding: 0 !important;
+        min-width: 0 !important;
+        height: var(--nova-inline-button-size) !important;
+        width: var(--nova-inline-button-size) !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .mat-datepicker-toggle-default-icon {
+            --nova-inline-button-icon-size: calc(var(--nova-inline-button-size, 48px)/1.4);
+            margin: 0 !important;
+            font-size: var(--nova-inline-button-icon-size) !important;
+            height: var(--nova-inline-button-icon-size) !important;
+            width: var(--nova-inline-button-icon-size) !important;
+            padding: 0 !important;
+        }
+
+        .mat-mdc-button-touch-target {
+            --nova-inline-button-size: calc(var(--mdc-icon-button-state-layer-size, 48px)/1.8);
+            height: var(--nova-inline-button-size) !important;
+            width: var(--nova-inline-button-size) !important;
+        }
+    }
+}
+
+.datePicker-toggle-read-only {
+    .mat-mdc-icon-button[disabled] {
+        color: var(--mdc-icon-button-readonly-icon-color, var(--mdc-icon-button-disabled-icon-color));
+        pointer-events: none;
+        cursor: default;
+    }
+}

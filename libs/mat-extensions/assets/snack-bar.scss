@@ -1,0 +1,17 @@
+.cdk-overlay-container {
+    &.cdk-overlay-container-relative {
+        //height: unset;
+        position: absolute;
+
+        .cdk-global-overlay-wrapper {
+          //  height: unset;
+        }
+    }
+}
+.--overlay-relative-position{
+    position: relative;
+}
+.nova-overlay-container-sticky {
+    position: sticky;
+    top: 0;
+}

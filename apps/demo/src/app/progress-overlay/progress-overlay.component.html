@@ -1,0 +1,35 @@
+<div class="main-div">
+    <button class="example-button" mat-button="flat" color="warn" [progressPosition]="position"
+        [addOnProgress]="showLoading" [disabled]="false" [progressValue]="progressValue" [progressMode]="mode"
+        [progressVisible]="isLoading" [progressColor]="color">
+        Mat Button
+    </button>
+
+    <button class="example-button" [progressPosition]="position" [keepElementActive]="true" [addOnProgress]="showLoading"
+        [disabled]="false" [progressValue]="progressValue" [progressMode]="mode" [progressVisible]="isLoading" [color]="color">
+        Standard Button
+    </button>
+    <div class="div-example" [progressPosition]="position" [addOnProgress]="showLoading" [progressValue]="progressValue"
+        [progressMode]="mode" [progressVisible]="isLoading" [color]="color">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, molestias
+        non beatae dolor odio sit quam commodi qui, optio incidunt veniam debitis
+        tempore eveniet facilis blanditiis repellat minima illum corrupti.
+        <BR />Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque,
+        molestias non beatae dolor odio sit quam commodi qui, optio incidunt veniam
+        debitis tempore eveniet facilis blanditiis repellat minima illum corrupti.
+    </div>
+</div>
+<div class="button-area">
+    <button mat-button="stroked" color="primary" (click)="toggleShow()">Toggle Show</button>
+    <button mat-button="stroked" color="primary" (click)="changeMode()">Toggle Mode</button>
+    @if (mode == "determinate") {
+    <button mat-button="stroked" color="primary" (click)="changeValue()">+Value</button>
+    <button mat-button="stroked" color="primary" (click)="reset()">Reset</button>
+    }
+    <button mat-button="stroked" color="primary" (click)="changeDisplayMode()">DisplayMode</button>
+    <button mat-button="stroked" color="primary" (click)="changeColor()">Change Color</button>
+    <button mat-button="stroked" color="primary" (click)="position = 'start'">Start Position</button>
+    <button mat-button="stroked" color="primary" (click)="position = 'end'">End Position</button>
+    <button mat-button="stroked" color="primary" (click)="position = 'center'">Center Position</button>
+    <button mat-button="stroked" color="primary" (click)="position = ''">None Position</button>
+</div>

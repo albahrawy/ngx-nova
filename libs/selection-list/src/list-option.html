@@ -1,0 +1,76 @@
+
+<ng-template #checkbox>
+  <div class="mdc-checkbox" [class.mdc-checkbox--disabled]="disabled">
+    <input type="checkbox" class="mdc-checkbox__native-control" [checked]="selected" [disabled]="disabled" />
+    <div class="mdc-checkbox__background">
+      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24" aria-hidden="true">
+        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+      </svg>
+      <div class="mdc-checkbox__mixedmark"></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #radio>
+  <div class="mdc-radio" [class.mdc-radio--disabled]="disabled">
+    <input type="radio" class="mdc-radio__native-control" [checked]="selected" [disabled]="disabled" />
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+  </div>
+</ng-template>
+
+@if (indexTemplate) {
+<ng-template [ngTemplateOutlet]="indexTemplate" [ngTemplateOutletContext]="{$implicit:index}"></ng-template>
+}
+<!-- Container for the checkbox at start. -->
+@if (toggleType === "check" && togglePosition === "before") {
+<span class="mdc-list-item__start mat-mdc-list-option-checkbox-before">
+  <ng-template [ngTemplateOutlet]="checkbox"></ng-template>
+</span>
+}
+<!-- Container for the radio at the start. -->
+@if(toggleType === "radio" && togglePosition === "before"){
+<span class="mdc-list-item__start mat-mdc-list-option-radio-before">
+  <ng-template [ngTemplateOutlet]="radio"></ng-template>
+</span>
+} @if(iconType && iconPosition === "before"){
+<ng-template [ngTemplateOutlet]="iconTemplate!" [ngTemplateOutletContext]="{$implicit:data}"></ng-template>
+}
+
+<span class="mdc-list-item__content">
+  @if(titleTemplate){
+  <ng-template [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{$implicit:data}"></ng-template>
+  }
+  <!-- <ng-content select="[matListItemLine]"></ng-content> -->
+  <!-- <span #unscopedContent class="mat-mdc-list-item-unscoped-content" (cdkObserveContent)="_updateItemLines(true)">
+    <ng-content></ng-content>
+  </span> -->
+</span>
+
+<!-- Container for the checkbox at the end. -->
+@if(toggleType === "check" && togglePosition === "after"){
+<span class="mdc-list-item__end">
+  <ng-template [ngTemplateOutlet]="checkbox"></ng-template>
+</span>
+}
+<!-- Container for the radio at the end. -->
+@if(toggleType === "radio" && togglePosition === "after"){
+<span class="mdc-list-item__end">
+  <ng-template [ngTemplateOutlet]="radio"></ng-template>
+</span>
+}
+<!-- Conditionally renders icons/avatars after the list item text. -->
+@if(iconType && iconPosition === "after"){
+<ng-template [ngTemplateOutlet]="iconTemplate!" [ngTemplateOutletContext]="{$implicit:data}"></ng-template>
+}
+
+<!-- Divider -->
+<ng-content select="mat-divider"></ng-content>
+
+<!--
+    Strong focus indicator element. MDC uses the `::before` pseudo element for the default
+    focus/hover/selected state, so we need a separate element.
+  -->
+<div class="mat-mdc-focus-indicator"></div>

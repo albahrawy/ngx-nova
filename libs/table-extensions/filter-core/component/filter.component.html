@@ -1,0 +1,32 @@
+<div class="input-container">
+    @if(filterPortal){
+    <ng-template [cdkPortalOutlet]="filterPortal" (attached)="onAttached($event)"></ng-template>
+    }@else{
+    <ng-container *ngTemplateOutlet="custom"></ng-container>
+    }
+</div>
+@if (_operations().length>1) {
+<span class="filter-trigger" [matMenuTriggerFor]="filterMenu">
+    <svg height="24" viewBox="0 -960 960 960" width="24" fill="currentcolor">
+        <path d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z" />
+    </svg>
+</span>
+}
+<mat-menu #filterMenu>
+    @for (op of _operations(); track op) {
+    <button mat-menu-item class="operation-list" (click)="_inputCurrentOperation.set(op)">
+        <span class="check-span">
+            @if (_currentOperation() == op) {
+            <svg height="24" viewBox="0 -960 960 960" width="24" fill="currentcolor">
+                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+            </svg>
+            }
+        </span>
+        <span>{{op|novaTranslate:true:'table.filter.'}}</span>
+    </button>
+    }
+</mat-menu>
+
+<ng-template #custom>
+    <ng-content select="[filterComponent]"></ng-content>
+</ng-template>

@@ -17,7 +17,7 @@ $align-items: start end center baseline stretch;
         flex-wrap: wrap;
     }
 
-    &[flex-gap] {
+    &.--has-flex-gap {
         gap: var(--layout-flex-gap, inherit);
     }
 }
@@ -34,13 +34,13 @@ $align-items: start end center baseline stretch;
     }
 
     @each $size in $element-sizes {
-        &.layout-flex-container-#{$size} {
+        &[layout-flex-container=#{$size}] {
             [layout-flex-element] {
                 --nova-flex-basis-value: var(--layout-flex-basis-#{$size}, #{$base-variable});
                 flex-basis: var(--nova-flex-basis-value);
             }
 
-            &[flex-gap] {
+            &.--has-flex-gap {
                 gap: var(--layout-flex-gap-#{$size}, var(--layout-flex-gap, inherit));
 
                 [layout-flex-element] {
@@ -48,7 +48,7 @@ $align-items: start end center baseline stretch;
                 }
             }
 
-            &[flex-limit] {
+            &.--flex-limit {
                 [layout-flex-element] {
                     max-width: var(--nova-flex-basis-value);
                 }

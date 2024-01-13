@@ -1,0 +1,59 @@
+:host {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-container {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+.check-span {
+    width: 24px;
+    display: inline-flex;
+    margin-right: 10px;
+
+    ::ng-deep [dir='rtl'] & {
+        margin-left: 10px;
+        margin-right: unset;
+    }
+}
+
+.operation-list {
+    ::ng-deep .mat-mdc-menu-item-text {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.filter-trigger {
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    margin-left: 4px;
+
+    ::ng-deep [dir='rtl'] & {
+        margin-left: unset;
+        margin-right: 4px;
+    }
+
+    opacity: 0;
+    transform: translateY(-5px);
+
+    transition-duration: 0.2s;
+    transition-property: opacity,
+    transform;
+
+    :host.has-filter & {
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    :host:hover &,
+    :host.show-trigger & {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+}

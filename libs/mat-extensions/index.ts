@@ -1,0 +1,1 @@
+export const NOVA_MAT_EXTENSIONS = '@ngx-nova/mat-extensions';

@@ -1,7 +1,7 @@
 {
   "name": "table-extensions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/table-extensions/src",
+  "sourceRoot": "libs/table-extensions",
   "prefix": "nova-angular",
   "tags": [],
   "projectType": "library",
@@ -38,7 +38,17 @@
           "libs/table-extensions/**/*.html",
           "libs/table-extensions/package.json",
           "libs/table-extensions/virtual-scroll/**/*.ts",
-          "libs/table-extensions/virtual-scroll/**/*.html"
+          "libs/table-extensions/virtual-scroll/**/*.html",
+          "libs/table-extensions/selection/**/*.ts",
+          "libs/table-extensions/selection/**/*.html",
+          "libs/table-extensions/data/**/*.ts",
+          "libs/table-extensions/data/**/*.html",
+          "libs/table-extensions/keyboard-navigation/**/*.ts",
+          "libs/table-extensions/keyboard-navigation/**/*.html",
+          "libs/table-extensions/columns/**/*.ts",
+          "libs/table-extensions/columns/**/*.html",
+          "libs/table-extensions/filter-core/**/*.ts",
+          "libs/table-extensions/filter-core/**/*.html"
         ]
       }
     }

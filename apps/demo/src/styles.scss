@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../../../libs/cdk/assets/nova-flex-layout.scss';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '../../../libs/cdk/assets/all-styles.scss';
+@import '../../../libs/table-extensions/assets/table.scss';
+@import '../../../libs/mat-extensions/assets/all_styles.scss';
+@import '../../../libs/selection-list/assets/nova-selection-list.scss';
+// @import '../../../libs/oeverlays/assets/dialog.scss';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-button-touch-target {
+  display: none;
+}

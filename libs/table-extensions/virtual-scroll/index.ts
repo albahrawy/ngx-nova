@@ -3,7 +3,7 @@ import { CdkTableVirtualScrollable } from './table-viertual-scrollable';
 import { CdkTableVirtualScrollDataHandler } from './virtual-scroll-data-handler';
 
 export * from './fixed-size-strategy';
-export * from './interfaces';
+export * from './types';
 export * from './table-viertual-scrollable';
 export * from './virtual-scroll-data-handler-base';
 export * from './virtual-scroll-data-handler';

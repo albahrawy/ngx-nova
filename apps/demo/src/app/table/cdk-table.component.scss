@@ -1,0 +1,71 @@
+:host {
+    --table-inner-vertical-border: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.table-area {
+    --resposive-label-width: 150px;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.button-area {
+    padding: 20px;
+
+    .mat-mdc-button-base {
+        margin: 8px 8px 8px 0;
+    }
+}
+
+cdk-row,
+cdk-header-row,
+cdk-footer-row {
+    display: flex;
+    border-bottom: var(--table-inner-vertical-border);
+}
+
+cdk-footer-row {
+    min-height: 52px;
+}
+
+cdk-header-row {
+    min-height: 56px;
+}
+
+cdk-cell,
+cdk-header-cell,
+cdk-footer-cell {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+cdk-cell,
+cdk-header-cell,
+cdk-footer-cell {
+    flex: 1;
+    border-right: var(--table-inner-vertical-border);
+
+    [dir='rtl'] & {
+        border-right: unset;
+        border-left: var(--table-inner-vertical-border);
+    }
+}
+
+cdk-header-row {
+    background-color: rgb(100, 237, 116);
+    box-sizing: border-box;
+}
+
+
+cdk-footer-row,
+cdk-footer-row:hover {
+    background-color: rgb(160, 96, 95) !important;
+    box-sizing: border-box;
+}

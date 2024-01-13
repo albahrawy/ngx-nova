@@ -1,0 +1,38 @@
+.nova-progress-addon-host {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+
+    &.start-position {
+        align-items: flex-start;
+    }
+
+    &.end-position {
+        align-items: flex-end;
+    }
+
+    &.inline-spinner {
+        flex-direction: column;
+    }
+}
+
+// to avoid left padding of the progress bar inside the button.
+button .mdc-linear-progress__bar-inner {
+    left: 0;
+}
+
+// to avoid progress panel overlay and handle if it hosted by dialog-host
+// :has(.nova-progress-addon-host):not(:has(.ignore-nova-progress-addon-host)) {
+//     overflow: hidden !important;
+//     position: relative;
+// }
+
+.--has-inline-progress {
+    overflow: hidden !important;
+    position: relative;
+}

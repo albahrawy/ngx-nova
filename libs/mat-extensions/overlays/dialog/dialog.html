@@ -1,0 +1,22 @@
+<div class="nova-dialog-title" mat-dialog-title cdkDrag cdkDragBoundary=".cdk-overlay-container"
+    cdkDragRootElement=".cdk-overlay-pane">
+    <span cdkDragHandle class="nova-dialog-title-span">{{options.caption|novaTranslate}}</span>
+    <nova-button-container [buttons]="options.titleButtons" [disabled]="busy()" (buttonClicked)="buttonClicked($event)"
+        class="nova-dialog-title-buttons"></nova-button-container>
+</div>
+<mat-dialog-content class="nova-dialog-content-area" [style.overflow]="options.overflow">
+    @if(message){
+    <div class="nova-dialog-message" [innerHTML]="message|safeHtml">{{message}}</div>
+    }@else if(message$){
+    <div class="nova-dialog-html-message" [innerHTML]="message$|async|safeHtml">{{message}}</div>
+    }@else{
+    <ng-template [cdkPortalOutlet]="contentPortal" (attached)="onComponentAttached($event)"></ng-template>
+    }
+</mat-dialog-content>
+
+@if (hasActionBar) {
+<mat-dialog-actions align="end" class="nova-dialog-actions">
+    <nova-button-container [buttons]="options.actionBar?.buttons" [disabled]="busy()" (buttonClicked)="buttonClicked($event)"
+        class="nova-dialog-bar-buttons"></nova-button-container>
+</mat-dialog-actions>
+}

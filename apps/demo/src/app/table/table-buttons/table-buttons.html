@@ -1,0 +1,18 @@
+<button mat-button="stroked" [color]="color" (click)="dataSource.data=[]">Clear Data</button>
+<button mat-button="stroked" [color]="color" (click)="dataSource.data=createData(100)">Data 100</button>
+<button mat-button="stroked" [color]="color" (click)="dataSource.data=createData(1000)">New Data 1000</button>
+<button mat-button="stroked" [color]="color" (click)="dataSource.data=createData(500_000)">New Data 500_000</button>
+<button mat-button="stroked" [color]="color" (click)="changeDataSource()">New Data Source 50_000</button>
+<button mat-button="stroked" [color]="color" (click)="rowHeight= rowHeight+5">+ RowHeight</button>
+<button mat-button="stroked" [color]="color" (click)="rowHeight= rowHeight-5">- RowHeight</button>
+<button mat-button="stroked" [color]="color" (click)="showHeader=!showHeader">Toggle Header</button>
+<button mat-button="stroked" [color]="color" (click)="showFooter=!showFooter">Toggle Footer</button>
+<button mat-button="stroked" [color]="color" (click)="showFilter=!showFilter">Toggle Filter</button>
+<button mat-button="stroked" [color]="color" (click)="responsive=!responsive">Toggle Responsive</button>
+<button mat-button="stroked" [color]="color" (click)="updateData()">update 3rd record</button>
+<button mat-button="stroked" [color]="color" (click)="insertData()">insert new record</button>
+<button mat-button="stroked" [color]="color" (click)="removeData()">remove 4th record</button>
+<button mat-button="stroked" [color]="color" (click)="toggleSymbol()">Toggle Symbol</button>
+<button mat-button="stroked" [color]="color" (click)="toggleOperation()">Toggle Filter Operation</button>
+
+<ng-content></ng-content>

@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.main-div {
+    flex: 1 1 auto;
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.example-button {
+    width: 100%;
+    max-width: 400px;
+}
+
+.div-example {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid blueviolet;
+}
+
+.button-area {
+    padding-top: 10px;
+    box-sizing: border-box;
+    flex: 1 1 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow: auto;
+    align-content: flex-end;
+}

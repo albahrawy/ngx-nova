@@ -1,6 +1,13 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/libs/mat-extensions",
+  "assets": [
+    {
+      "input": "./assets",
+      "glob": "**/*.scss",
+      "output": "theming"
+    }
+  ],
   "lib": {
     "entryFile": "index.ts"
   }

@@ -8,6 +8,7 @@
 
 
 const formatCache = new Map<string, Intl.NumberFormatOptions | undefined>();
+const numberFormatRegex = /\{[0.%#,]+}/g;
 
 /**
  * Checks if the given value has a specific flag set.
@@ -77,6 +78,35 @@ export function generateFormatOption(formatString?: string): Intl.NumberFormatOp
     return Object.keys(options).length ? options : undefined;
 }
 
+// export function generateFormatOption(formatString?: string): Intl.NumberFormatOptions | undefined {
+//     const options: Intl.NumberFormatOptions = {};
+
+//     if (formatString) {
+//         if (formatString.includes(',')) {
+//             options.useGrouping = true;
+//         }
+
+//         const fractionDigitsMatch = formatString.match(/\.0*/);
+//         if (fractionDigitsMatch) {
+//             options.maximumFractionDigits = options.minimumFractionDigits = fractionDigitsMatch[0].length - 1;
+//         }
+
+//         if (formatString.includes('%')) {
+//             options.style = 'percent';
+//         }
+
+//         const padStartMatch = formatString.match(/P([.%#0,]*)/);
+//         if (padStartMatch) {
+//             const [, padChar, padLength] = padStartMatch;
+//             options.padStart = { padChar, padLength: parseInt(padLength) };
+//         }
+//     }
+
+//     return Object.keys(options).length ? Object.freeze(options) : undefined;
+// }
+
+
+
 /**
  * Formats a number based on the provided format string and locale.
  * @param {number} value - The number to format.
@@ -87,11 +117,19 @@ export function generateFormatOption(formatString?: string): Intl.NumberFormatOp
 export function formatNumber(value: number, formatString?: string, locals?: string): string {
     let options: Intl.NumberFormatOptions | undefined;
     if (formatString) {
-        options = formatCache.get(formatString);
-        if (!options) {
-            options = generateFormatOption(formatString);
-            formatCache.set(formatString, options);
-        }
+        if (numberFormatRegex.test(formatString))
+            return formatString.replace(numberFormatRegex, (match) => formatCore(value, match.slice(1, -1), locals));
+        else
+            return formatCore(value, formatString, locals);
+    }
+    return value.toLocaleString(locals, options);
+}
+
+function formatCore(value: number, format: string, locals?: string) {
+    let options = formatCache.get(format);
+    if (!options) {
+        options = generateFormatOption(format);
+        formatCache.set(format, options);
     }
     return value.toLocaleString(locals, options);
 }
@@ -118,18 +156,18 @@ export function formatFileSize(size: number, locals?: string): string {
  * This function extends the Number object with additional utility methods for formatting and flag operations.
  */
 // export function addProtoTypeExtensions() {
-    // if (!Number.generateFormatOption)
-    //     Number.generateFormatOption = generateFormatOption;
-    // if (!Number.prototype.format)
-    //     Number.prototype.format = function (f, locals) { return format(<number>this, f, locals) };
-    // if (!Number.prototype.hasFlag)
-    //     Number.prototype.hasFlag = function (flag) { return hasFlag(<number>this, flag) };
-    // if (!Number.prototype.toBitValues)
-    //     Number.prototype.toBitValues = function () { return toBitValues(<number>this) };
-    // if (!Number.prototype.padStart)
-    //     Number.prototype.padStart = function (length, char = '0') { return padStart(<number>this, length, char) };
-    // if (!Number.prototype.formatFileSize)
-    //     Number.prototype.formatFileSize = function (locals) { return formatFileSize(<number>this, locals) };
+// if (!Number.generateFormatOption)
+//     Number.generateFormatOption = generateFormatOption;
+// if (!Number.prototype.format)
+//     Number.prototype.format = function (f, locals) { return format(<number>this, f, locals) };
+// if (!Number.prototype.hasFlag)
+//     Number.prototype.hasFlag = function (flag) { return hasFlag(<number>this, flag) };
+// if (!Number.prototype.toBitValues)
+//     Number.prototype.toBitValues = function () { return toBitValues(<number>this) };
+// if (!Number.prototype.padStart)
+//     Number.prototype.padStart = function (length, char = '0') { return padStart(<number>this, length, char) };
+// if (!Number.prototype.formatFileSize)
+//     Number.prototype.formatFileSize = function (locals) { return formatFileSize(<number>this, locals) };
 // }
 
 
@@ -144,17 +182,17 @@ export function formatFileSize(size: number, locals?: string): string {
 // }
 
 // Declaration merging for Number prototype extensions
-declare global {
+// declare global {
 
-    interface Number {
-        toBitValues(): number[];
-        format(formatString: string, locals?: string): string;
-        formatFileSize(locals?: string): string;
-        padStart(length: number, char?: string): string;
-        hasFlag(flag: number): boolean;
-    }
+//     interface Number {
+//         toBitValues(): number[];
+//         format(formatString: string, locals?: string): string;
+//         formatFileSize(locals?: string): string;
+//         padStart(length: number, char?: string): string;
+//         hasFlag(flag: number): boolean;
+//     }
 
-    interface NumberConstructor {
-        generateFormatOption(formatString: string): Intl.NumberFormatOptions | undefined;
-    }
-}
+//     interface NumberConstructor {
+//         generateFormatOption(formatString: string): Intl.NumberFormatOptions | undefined;
+//     }
+// }

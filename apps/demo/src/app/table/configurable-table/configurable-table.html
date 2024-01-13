@@ -1,0 +1,20 @@
+<nova-table class="nova-table-example" [editable]="config.editable" [commitOnDestroy]="config.commitOnDestroy"
+    [editWithF2]="config.editWithF2" [editWithEnter]="config.editWithEnter" [rowHeight]="config.rowHeight"
+    [attachFilter]="config.attachFilter" [reorderColumns]="config.reorderColumns" [sortable]="config.sortable"
+    [showHeader]="config.showHeader" [showFilter]="config.showFilter" [showFooter]="config.showFooter"
+    [stickyHeader]="config.stickyHeader" [stickyFilter]="config.stickyFilter" [stickyFooter]="config.stickyFooter"
+    [noDataText]="config.noDataText" [responsive]="config.responsive" [dataSource]="dataSource"
+    [selectColumn]="config.selectColumn" [selectable]="config.selectable" [columns]="config.columns"
+    [iconMember]="config.iconMember" [iconColumn]="config.iconColumn" [showIndex]="config.showIndex"
+    [disabled]="disabled" [iconType]="config.iconType" (created)="onTableCreated($event)"></nova-table>
+<div class="button-area">
+    <button mat-button="stroked" color="primary" (click)="config.rowHeight= config.rowHeight!+5">+ RowHeight</button>
+    <button mat-button="stroked" color="primary" (click)="config.rowHeight= config.rowHeight!-5">- RowHeight</button>
+    <button mat-button="stroked" color="primary" (click)="toggleSymbol()">Toggle Symbol</button>
+    <button mat-button="stroked" color="primary" (click)="toggleSelectColumn()">Toggle Select Column</button>
+    <button mat-button="stroked" color="primary" (click)="toggleIconColumn()">Toggle Icon Column</button>
+    <button mat-button="stroked" color="primary" (click)="toggleSelectable()">Toggle Selectable</button>
+    <button mat-button="stroked" color="primary" (click)="toggleIconType()">Toggle Icon Type</button>
+    <button mat-button="stroked" color="primary" (click)="disabled=!disabled">Toggle disabled</button>
+    <button mat-button="stroked" color="primary" (click)="config.showIndex=!config.showIndex">Toggle Row No</button>
+</div>

@@ -1,7 +1,7 @@
 import { NumberInput, coerceNumberProperty } from "@angular/cdk/coercion";
 import { Directive, OnChanges, inject, ElementRef, Renderer2, Input, SimpleChanges, RendererStyleFlags2, HostBinding } from "@angular/core";
 import { getProperCssValue } from "@ngx-nova/cdk/shared";
-
+//TODO: refactor
 @Directive({
     selector: '[layout-flex-element]',
     standalone: true,

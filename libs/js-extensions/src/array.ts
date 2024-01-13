@@ -128,22 +128,24 @@ export function arraySum<T>(array: T[], transform?: IFunc<T, unknown>): number {
 * this function handles the correct type of the elements.
 * @param array An array of values that are used to calculate a sum.
 * @param transform A transform function to apply to each element.
+* @param direction 1 for ascending sort and -1 for descending. default is 1.
+* @param locale a string represnet a locale to used when comparing string in a local language. defaule is undefined
 * @returns a reference to the same array.
 */
-export function arraySort<T>(array: T[], transform?: IFunc<T, unknown>): T[] {
-    return sortCore(array, 1, transform);
+export function arraySort<T>(array: T[], transform: IFunc<T, unknown> | undefined = undefined, direction: 1 | -1 = 1, locale?: string): T[] {
+    return sortCore(array, direction, transform, locale);
 }
 
-/**
-* Sorts descending an array in place and providing a transform function to obtain specific value from element if it is an object.
-* this function handles the correct type of the elements.
-* @param array An array of values that are used to calculate a sum.
-* @param transform A transform function to apply to each element.
-* @returns a reference to the same array.
-*/
-export function arraySortDescending<T>(array: T[], transform?: IFunc<T, unknown>): T[] {
-    return sortCore(array, -1, transform);
-}
+// /**
+// * Sorts descending an array in place and providing a transform function to obtain specific value from element if it is an object.
+// * this function handles the correct type of the elements.
+// * @param array An array of values that are used to calculate a sum.
+// * @param transform A transform function to apply to each element.
+// * @returns a reference to the same array.
+// */
+// export function arraySortDescending<T>(array: T[], transform?: IFunc<T, unknown>): T[] {
+//     return sortCore(array, -1, transform);
+// }
 
 // export const arrays = {
 //     unique,
@@ -159,12 +161,13 @@ export function arraySortDescending<T>(array: T[], transform?: IFunc<T, unknown>
 
 //TODO: add min and max
 
-function sortCore<T>(array: T[], direction: 1 | -1, transform?: IFunc<T, unknown>): T[] {
+function sortCore<T>(array: T[], direction: 1 | -1, transform?: IFunc<T, unknown>, locale?: string): T[] {
     if (!Array.isArray(array))
         return array;
     const getter = transform ?? (v => v);
     const safeGetter = (v: T) => convertToSafeValue(getter(v));
-    return array.sort((a, b) => performSort(safeGetter(a), safeGetter(b), direction));
+    const collator = typeof locale === 'string' ? new Intl.Collator(locale) : undefined;
+    return array.sort((a, b) => performSort(safeGetter(a), safeGetter(b), direction, collator));
 }
 
 function convertToSafeValue(value: unknown) {
@@ -176,7 +179,7 @@ function convertToSafeValue(value: unknown) {
     return value;
 }
 
-function performSort(valueA: unknown, valueB: unknown, direction: 1 | -1) {
+function performSort(valueA: unknown, valueB: unknown, direction: 1 | -1, collator?: Intl.Collator) {
     const valueAType = typeof valueA;
     const valueBType = typeof valueB;
     if (valueAType !== valueBType) {
@@ -189,8 +192,8 @@ function performSort(valueA: unknown, valueB: unknown, direction: 1 | -1) {
     let comparatorResult = 0;
     if (valueA != null && valueB != null) {
         // Check if one value is greater than the other; if equal, comparatorResult should remain 0.
-        if (typeof valueA === 'string' && typeof valueB === 'string') {
-            comparatorResult = valueA.localeCompare(valueB);
+        if (collator && typeof valueA === 'string' && typeof valueB === 'string') {
+            comparatorResult = collator.compare(valueA, valueB);
         } else {
             if (valueA > valueB)
                 comparatorResult = 1;

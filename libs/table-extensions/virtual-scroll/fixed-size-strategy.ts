@@ -8,11 +8,12 @@
 import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from "@angular/cdk/scrolling";
 import { Directive, HostBinding, Input, OnChanges, forwardRef, numberAttribute } from "@angular/core";
 
+
 @Directive({
-    selector: 'cdk-table[virtual-scroll][rowHeight], mat-table[virtual-scroll][rowHeight]',
+    selector: 'cdk-table:not([responsive])[virtual-scroll][rowHeight], mat-table:not([responsive])[virtual-scroll][rowHeight]',
     standalone: true,
-    host:{
-        'class':'nova-virtual-scroll',
+    host: {
+        'class': 'nova-fixed-size-virtual-scroll-table',
     },
     providers: [
         {
@@ -23,7 +24,7 @@ import { Directive, HostBinding, Input, OnChanges, forwardRef, numberAttribute }
     ],
 })
 export class CdkTableFixedSizeVirtualScroll implements OnChanges {
-    /** The size of the items in the list (in pixels). */
+
     @HostBinding('style.--nova-table-row-height.px')
     @Input({ transform: numberAttribute }) rowHeight: number = 40;
 

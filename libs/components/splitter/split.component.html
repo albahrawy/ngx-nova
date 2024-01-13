@@ -1,0 +1,20 @@
+<ng-content></ng-content>
+@for (panel of visiblePanels; track panel;) {
+@if (!$last) {
+<div role="separator" tabindex="0" #gutterElement class="nova-split-gutter"
+    [class.nova-split-dragged]="_activeRef.gutterIndex === $index + 1" [style.flex-basis.px]="gutterSize"
+    [style.order]="$index * 2 + 1" (dblclick)="_dblClickCollapse($event,panel)"
+    (mousedown)="_mouseResize($event, $index * 2 + 1, $index + 1)"
+    (touchstart)="_mouseResize($event, $index * 2 + 1, $index + 1)"
+    (keydown)="_KeyboardResize($event, $index * 2 + 1, $index + 1)" [attr.aria-orientation]="orientation"
+    [attr.aria-valuemin]="panel.renderRef.minSize" [attr.aria-valuemax]="panel.renderRef.maxSize"
+    [attr.aria-valuenow]="panel.renderRef.size === 'auto' ? null : panel.renderRef.size"
+    [attr.aria-valuetext]="panel.renderRef.size === 'auto' ? null : panel.renderRef.size+' px'">
+    <div class="nova-split-gutter-handle"></div>
+</div>
+}
+}
+
+<!-- (mouseup)="clickGutter($event, $index + 1)"
+    (touchend)="clickGutter($event, $index + 1)"
+    (keydown)="startKeyboardDrag($event, $index * 2 + 1, $index + 1)" -->

@@ -1,0 +1,44 @@
+{
+  "name": "table-filter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/table-filter-factory",
+  "prefix": "nova-angular",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/table-filter-factory/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/table-filter-factory/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/table-filter-factory/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/table-filter-factory/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/table-filte-factoryr/**/*.ts",
+          "libs/table-filter-factory/**/*.html",
+          "libs/table-filter-factory/package.json"
+        ]
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { InjectionToken } from "@angular/core";
 import { ErrorHandleType } from "@ngx-nova/cdk/error-handler";
-import { IGenericArray, IGenericDictioanry, IStringDictioanry } from "@ngx-nova/js-extensions";
+import { IGenericArray, IGenericDictionary, IStringDictionary } from "@ngx-nova/js-extensions";
 import { Observable } from "rxjs";
 
 export const NOVA_HTTP_URL_RESOLVER = new InjectionToken<IHttpUrlResolver>('nova_http_url_resolver');
@@ -10,7 +10,7 @@ export const NOVA_HTTP_SERVICE = new InjectionToken<INovaHttpService>('nova_http
 
 export declare type ApiConfig = {
     base: string;
-    urls: { [key: string]: { root: string, endPoints: IStringDictioanry; } };
+    urls: { [key: string]: { root: string, endPoints: IStringDictionary; } };
 };
 
 export interface IHttpUrlResolver {
@@ -63,66 +63,66 @@ export interface HttpHandleOptions {
 
 export declare interface INovaHttpService {
     httpClient: HttpClient;
-    get<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyJson): Observable<T | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyBuffer): Observable<ArrayBuffer | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyBlob): Observable<Blob | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyText): Observable<string | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyJson): Observable<object | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsBuffer): Observable<HttpEvent<ArrayBuffer> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsBlob): Observable<HttpEvent<Blob> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsText): Observable<HttpEvent<string> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsJson): Observable<HttpEvent<object> | null>;
-    get<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsJson): Observable<HttpEvent<T> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseBuffer): Observable<HttpResponse<ArrayBuffer> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseBlob): Observable<HttpResponse<Blob> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseText): Observable<HttpResponse<string> | null>;
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseJson): Observable<HttpResponse<object> | null>;
-    get<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseJson): Observable<HttpResponse<T> | null>;
 
-    delete<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyJson): Observable<T | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyBuffer): Observable<ArrayBuffer | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyBlob): Observable<Blob | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyText): Observable<string | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsBodyJson): Observable<object | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsBuffer): Observable<HttpEvent<ArrayBuffer> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsBlob): Observable<HttpEvent<Blob> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsText): Observable<HttpEvent<string> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsJson): Observable<HttpEvent<object> | null>;
-    delete<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsEventsJson): Observable<HttpEvent<T> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseBuffer): Observable<HttpResponse<ArrayBuffer> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseBlob): Observable<HttpResponse<Blob> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseText): Observable<HttpResponse<string> | null>;
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseJson): Observable<HttpResponse<object> | null>;
-    delete<T>(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete<T>(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptionsResponseJson): Observable<HttpResponse<T> | null>;
 
     post<T>(url: string | string[], body: unknown,

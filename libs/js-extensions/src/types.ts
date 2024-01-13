@@ -6,14 +6,15 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at the root.
  */
-import { Spread } from "./internal.types";
+import { Spread } from "./internal/types";
 
 export type Constructor<T = any> = new (...args: any[]) => T;
 export type IFunc<I, O> = (arg: I) => O;
-export type IDictioanry<T> = Record<string, T>;
-export type IGenericDictioanry = Record<string, any>;
-export type IStringDictioanry = Record<string, string>;
+export type IDictionary<T> = Record<string, T>;
+export type IGenericDictionary = Record<string, any>;
+export type IStringDictionary = Record<string, string>;
 export type IGenericArray = Array<any>;
+export type Nullable<V> = V | null | undefined;
 export type MergedObject<T extends [...any]> = Spread<T>;
 export type ValueMap = {
     boolean: boolean;
@@ -25,3 +26,8 @@ export type ValueMap = {
 };
 
 export type ValueType = keyof ValueMap | '';
+
+export interface INumberFormatOptions extends Intl.NumberFormatOptions {
+    padChar?: string,
+    padLength?: number,
+}

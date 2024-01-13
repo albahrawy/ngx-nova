@@ -1,5 +1,5 @@
 import { InjectionToken } from "@angular/core";
-import { IGenericDictioanry, IStringDictioanry } from "@ngx-nova/js-extensions";
+import { IGenericDictionary, IStringDictionary } from "@ngx-nova/js-extensions";
 import { Observable } from "rxjs";
 
 export const TRANSLATE_SERVICE = new InjectionToken<ITranslateService>('TRANSLATE_SERVICE');
@@ -30,24 +30,25 @@ export interface ILanguage {
 
 export interface ILangChangeEvent {
     language: ILanguage
-    translations: IGenericDictioanry;
+    translations: IGenericDictionary;
 }
 
 export interface ITranslateService {
-    getLanguageStore(lang: string): Observable<IGenericDictioanry>;
+    getLanguageStore(lang: string): Observable<IGenericDictionary>;
 }
 
 export interface INovaLocalizer {
-    readonly current: ILanguage;
+    //readonly current: ILanguage;
     readonly onChange: Observable<ILangChangeEvent>;
-    translate<T extends string | string[] | IStringDictioanry = string>
-        (value: string | IStringDictioanry, returnOriginal?: boolean, prefix?: string): T | null;
+    translate<T extends string | string[] | IStringDictionary = string>
+        (value: string | IStringDictionary, returnOriginal?: boolean, prefix?: string): T | null;
     changeLang(lang: ILanguage): void;
     init(mandatory?: boolean): Observable<ILangChangeEvent>;
+    currentLang(): string;
 }
 
 export declare interface ILocalizeConfig {
-    appTitle?: string | IStringDictioanry;
+    appTitle?: string | IStringDictionary;
     languages?: ILanguage[];
     defaultLang?: string;
     localizeSource?: {

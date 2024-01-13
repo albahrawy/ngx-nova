@@ -1,0 +1,35 @@
+.nova-dialog-title {
+    &.mat-mdc-dialog-title {
+        margin: 0px;
+        padding: 0 10px;
+        background: #369;
+        color: #fff;
+        --mdc-dialog-subhead-color: #fff;
+        cursor: move;
+        display: flex;
+        align-items: center;
+    }
+
+    .nova-dialog-title-buttons {
+        .nova-button-container--button {
+            background-color: white;
+            //margin: 5px;
+            max-width: 30px;
+            max-height: 30px;
+            //line-height: 30px;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .nova-dialog-title-span {
+        flex: 1 1 auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 5px 24px;
+    }
+}

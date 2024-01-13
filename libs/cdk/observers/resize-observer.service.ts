@@ -1,14 +1,18 @@
-import { Injectable } from "@angular/core";
-import { filter, map, NextObserver, Observable, Subscriber, throttleTime } from "rxjs";
+import { Injectable, NgZone, Optional } from "@angular/core";
+import { asyncScheduler, filter, map, NextObserver, Observable, Subscriber, throttleTime } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class ResizeObservableService {
     private resizeObserver: ResizeObserver;
     private notifiers: NextObserver<ResizeObserverEntry[]>[] = [];
 
-    constructor() {
+    constructor(@Optional() ngZone: NgZone) {
         this.resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-            this.notifiers.forEach(obs => obs.next(entries));
+            const _pushNotifier = () => this.notifiers.forEach(obs => obs.next(entries));
+            if (ngZone)
+                ngZone.run(() => _pushNotifier());
+            else
+                _pushNotifier();
         });
     }
 
@@ -29,7 +33,7 @@ export class ResizeObservableService {
         return newObserverCandidate.pipe(
             map(entries => entries.find(entry => entry.target === elem)),
             filter(Boolean),
-            throttleTime(30)
+            throttleTime(20, asyncScheduler, { trailing: true })
         );
     }
 

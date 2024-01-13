@@ -1,0 +1,21 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.form-div {
+    flex: 1 1 auto;
+}
+
+.button-area {
+    padding-top: 10px;
+    box-sizing: border-box;
+    flex: 1 0 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow: auto;
+    align-content: flex-end;
+}

@@ -1,0 +1,84 @@
+{
+    "base": "https://168.187.247.98",
+    "urls": {
+        "pages": {
+            "root": "",
+            "endPoints": {
+                "design": "page-design"
+            }
+        },
+        "users": {
+            "root": "users",
+            "endPoints": {
+                "register": "register",
+                "activate": "activate",
+                "resendCode": "resendCode",
+                "changeEmail": "changeEmail",
+                "auth": "auth",
+                "forget": "forget-password",
+                "verifyResetPass": "verify-reset-password",
+                "changePassword": "change-password",
+                "resetPassword": "reset-password"
+            }
+        },
+        "appointment": {
+            "root": "appointment",
+            "endPoints": {
+                "current": "",
+                "days": "days",
+                "hours": "hours",
+                "schedule": "schedule",
+                "cancel": "cancel",
+                "all": "all"
+            }
+        },
+        "db": {
+            "root": "",
+            "endPoints": {
+                "lookup": "assistant"
+            }
+        },
+        "documents": {
+            "root": "documents",
+            "endPoints": {
+                "list": "list",
+                "upload": "upload",
+                "required": "required"
+            }
+        }
+    },
+    "pageSetup": {
+        "signup": {
+            "args": {
+                "RefNo": 220006,
+                "CategoryRef": 9
+            }
+        }
+    },
+    "listData": {
+        "appointment-status": [
+            {
+                "value": 100,
+                "caption": {
+                    "en": "Active",
+                    "ar": "نشط"
+                }
+            },
+            {
+                "value": 101,
+                "caption": {
+                    "en": "Canceled",
+                    "ar": "ملغي"
+                }
+            },
+            {
+                "value": 102,
+                "caption": {
+                    "en": "Success",
+                    "ar": "تم التنفيذ"
+                }
+            }
+        ]
+    },
+    "maxUploadSize":76880
+}

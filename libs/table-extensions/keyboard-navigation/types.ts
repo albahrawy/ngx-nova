@@ -1,0 +1,1 @@
+export type KeyboardNavigationType = 'row' | 'cell' | 'cell-round' | 'none';

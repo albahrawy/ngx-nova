@@ -10,54 +10,76 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "stripInternal": true,
     "baseUrl": ".",
     "paths": {
-      "@ngx-nova/cdk": [
-        "libs/cdk/index.ts"
+      "@ngx-nova/cdk": ["libs/cdk/index.ts"],
+      "@ngx-nova/cdk/error-handler": ["libs/cdk/error-handler/index.ts"],
+      "@ngx-nova/cdk/flex-layout": ["libs/cdk/flex-layout/index.ts"],
+      "@ngx-nova/cdk/format": ["libs/cdk/format/index.ts"],
+      "@ngx-nova/cdk/http": ["libs/cdk/http/index.ts"],
+      "@ngx-nova/cdk/localization": ["libs/cdk/localization/index.ts"],
+      "@ngx-nova/cdk/observers": ["libs/cdk/observers/index.ts"],
+      "@ngx-nova/cdk/pipes": ["libs/cdk/pipes/index.ts"],
+      "@ngx-nova/cdk/shared": ["libs/cdk/shared/src/index.ts"],
+      "@ngx-nova/components": ["libs/components/index.ts"],
+      "@ngx-nova/js-extensions": ["libs/js-extensions/src/index.ts"],
+      "@ngx-nova/mat-extensions": ["libs/mat-extensions/index.ts"],
+      "@ngx-nova/mat-extensions/buttons": [
+        "libs/mat-extensions/buttons/index.ts"
       ],
-      "@ngx-nova/cdk/error-handler": [
-        "libs/cdk/error-handler/index.ts"
+      "@ngx-nova/mat-extensions/date-adapter": [
+        "libs/mat-extensions/date-adapter/index.ts"
       ],
-      "@ngx-nova/cdk/flex-layout": [
-        "libs/cdk/flex-layout/index.ts"
+      "@ngx-nova/mat-extensions/inputs": [
+        "libs/mat-extensions/inputs/index.ts"
       ],
-      "@ngx-nova/cdk/format": [
-        "libs/cdk/format/index.ts"
+      "@ngx-nova/mat-extensions/overlays": [
+        "libs/mat-extensions/overlays/index.ts"
       ],
-      "@ngx-nova/cdk/http": [
-        "libs/cdk/http/index.ts"
+      "@ngx-nova/select": ["libs/select/index.ts"],
+      "@ngx-nova/selection-list": ["libs/selection-list/src/index.ts"],
+      "@ngx-nova/table-editor-factory": ["libs/table-editor-factory/index.ts"],
+      "@ngx-nova/table-extensions": ["libs/table-extensions/index.ts"],
+      "@ngx-nova/table-extensions/columns": [
+        "libs/table-extensions/columns/index.ts"
       ],
-      "@ngx-nova/cdk/localization": [
-        "libs/cdk/localization/index.ts"
+      "@ngx-nova/table-extensions/data": [
+        "libs/table-extensions/data/index.ts"
       ],
-      "@ngx-nova/cdk/observers": [
-        "libs/cdk/observers/index.ts"
+      "@ngx-nova/table-extensions/edit-core": [
+        "libs/table-extensions/edit-core/index.ts"
       ],
-      "@ngx-nova/cdk/shared": [
-        "libs/cdk/shared/src/index.ts"
+      "@ngx-nova/table-extensions/extras": [
+        "libs/table-extensions/extras/index.ts"
       ],
-      "@ngx-nova/js-extensions": [
-        "libs/js-extensions/src/index.ts"
+      "@ngx-nova/table-extensions/filter-core": [
+        "libs/table-extensions/filter-core/index.ts"
       ],
-      "@ngx-nova/mat-extensions": [
-        "libs/mat-extensions/index.ts"
+      "@ngx-nova/table-extensions/keyboard-navigation": [
+        "libs/table-extensions/keyboard-navigation/index.ts"
       ],
-      "@ngx-nova/table-extensions": [
-        "libs/table-extensions/index.ts"
+      "@ngx-nova/table-extensions/menus": [
+        "libs/table-extensions/menus/index.ts"
+      ],
+      "@ngx-nova/table-extensions/responsive": [
+        "libs/table-extensions/responsive/index.ts"
+      ],
+      "@ngx-nova/table-extensions/selection": [
+        "libs/table-extensions/selection/index.ts"
+      ],
+      "@ngx-nova/table-extensions/table": [
+        "libs/table-extensions/table/index.ts"
       ],
       "@ngx-nova/table-extensions/virtual-scroll": [
         "libs/table-extensions/virtual-scroll/index.ts"
-      ]
+      ],
+      "@ngx-nova/table-filter-factory": ["libs/table-filter-factory/index.ts"],
+      "@ngx-nova/ts-parser": ["libs/ts-parser/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,54 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    --table-inner-vertical-border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.nova-table-example {
+    flex: 1 1 auto;
+}
+
+.button-area {
+    padding-top: 10px;
+    box-sizing: border-box;
+    flex: 0 0 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow: auto;
+}
+
+
+::ng-deep mat-cell,
+::ng-deep mat-header-cell,
+::ng-deep mat-filter-cell,
+::ng-deep mat-footer-cell {
+    flex: 1;
+    border-right: var(--table-inner-vertical-border);
+
+    [dir='rtl'] & {
+        border-right: unset;
+        border-left: var(--table-inner-vertical-border);
+    }
+
+    min-width: 400px;
+}
+
+::ng-deep mat-header-row {
+    background-color: cornflowerblue !important;
+    box-sizing: border-box !important;
+}
+
+::ng-deep mat-filter-row {
+    box-sizing: border-box;
+    background-color: rgb(235, 235, 210) !important;
+}
+
+
+::ng-deep mat-footer-row,
+::ng-deep mat-footer-row:hover {
+    background-color: cadetblue !important;
+    box-sizing: border-box;
+}

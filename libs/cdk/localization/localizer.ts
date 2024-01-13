@@ -1,7 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT } from '@angular/common';
-import { EventEmitter, Injectable, inject } from '@angular/core';
-import { IGenericDictioanry, IStringDictioanry, getValue } from '@ngx-nova/js-extensions';
+import { EventEmitter, Injectable, inject, signal } from '@angular/core';
+import { IGenericDictionary, IStringDictionary, getValue } from '@ngx-nova/js-extensions';
 import { Observable, switchMap, take } from 'rxjs';
 import { CURRENT_LANGUAGE_STORAGE, ILangChangeEvent, ILanguage, INovaLocalizer, NOVA_LOCALIZER_CONFIG, TRANSLATE_SERVICE } from './types';
 
@@ -10,23 +10,25 @@ const _defaultLang: ILanguage = { symbol: 'en', isRTL: false };
 @Injectable({ providedIn: 'root' })
 export class NovaDefaultLocalizer implements INovaLocalizer {
 
+  currentLang = signal(_defaultLang.symbol);
   #_current?: ILanguage;
-  #_cached: Map<string, IGenericDictioanry> = new Map();
-  get current() { return this.#_current || _defaultLang; }
+  #_cached: Map<string, IGenericDictionary> = new Map();
+
   readonly onChange = new EventEmitter<ILangChangeEvent>();
 
+  private get current() { return this.#_current || _defaultLang; }
   protected _translator = inject(TRANSLATE_SERVICE, { optional: true });
   protected _langStorage = inject(CURRENT_LANGUAGE_STORAGE, { optional: true });
   private _document = inject(DOCUMENT, { optional: true });
   private _dir = inject(Directionality, { optional: true });
   private _config = inject(NOVA_LOCALIZER_CONFIG, { optional: true });
 
-  translate<T extends string | string[] | IStringDictioanry = string>
-    (value: string | IStringDictioanry, returnOriginal?: boolean, prefix?: string): T | null {
+  translate<T extends string | string[] | IStringDictionary = string>
+    (value: string | IStringDictionary, returnOriginal?: boolean, prefix?: string): T | null {
     if (!value) {
       return null;
     }
-    let _value: string | string[] | IStringDictioanry | null = null;
+    let _value: string | string[] | IStringDictionary | null = null;
     if (typeof value === 'object' && value.constructor === Object) {
       _value = value[this.current.symbol] ?? value['en'];
     } else if (typeof value === 'string') {
@@ -58,7 +60,7 @@ export class NovaDefaultLocalizer implements INovaLocalizer {
     }
   }
 
-  applyLanguage(lang: ILanguage, data: IGenericDictioanry): void {
+  applyLanguage(lang: ILanguage, data: IGenericDictionary): void {
     const direction = lang?.isRTL ? 'rtl' : 'ltr';
     this.#_current = lang;
     if (this._document) {
@@ -72,6 +74,7 @@ export class NovaDefaultLocalizer implements INovaLocalizer {
       (this._dir as { value: Direction }).value = direction;
       this._dir.change.emit(direction);
     }
+    this.currentLang.set(lang.symbol);
     this.onChange.emit({ language: lang, translations: data });
   }
 

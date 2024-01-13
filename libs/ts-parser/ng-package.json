@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/ts-parser",
+  "lib": {
+    "entryFile": "index.ts"
+  }
+}

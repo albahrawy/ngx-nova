@@ -1,0 +1,47 @@
+<div class="mat-mdc-select-trigger" (click)="toggle()" #toggleTrigger>
+
+    <div class="mat-mdc-select-value" [attr.id]="_valueId">
+        @if (empty) {
+        <span class="mat-mdc-select-placeholder mat-mdc-select-min-line">{{placeholder}}</span>
+        } @else {
+        <span class="mat-mdc-select-value-text">
+            @if (customTrigger) {
+            <ng-content select="mat-select-trigger"></ng-content>
+            } @else {
+            <span class="mat-mdc-select-min-line">{{triggerValue}}</span>
+            <span class="select-trigger-more">{{triggerValueMore}}</span>
+            }
+        </span>
+        }
+    </div>
+    @if(allowClear && !disabled && !empty && !panelOpen){
+    <div class="mat-mdc-select-arrow-wrapper nova-select-clear-button" (click)="clear($event)">
+        <div class="mat-mdc-select-arrow">
+            <svg height="20" viewBox="0 0 24 24" width="20">
+                <path
+                    d="M19 6.415L17.565 5 12 10.565 6.415 5 5 6.415 10.565 12 5 17.565 6.415 19 12 13.415 17.565 19 19 17.565 13.415 12z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+        </div>
+    </div>
+    }
+
+    <div class="mat-mdc-select-arrow-wrapper">
+        <div class="mat-mdc-select-arrow">
+            <!-- Use an inline SVG, because it works better than a CSS triangle in high contrast mode. -->
+            <svg viewBox="0 0 24 24" width="24px" height="24px" focusable="false" aria-hidden="true">
+                <path d="M7 10l5 5 5-5z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<ng-template cdk-portal>
+    <div #panel role="listbox" tabindex="-1"
+        class="mat-mdc-select-panel nova-select-panel mdc-menu-surface mdc-menu-surface--open {{ panelTheme }}"
+        [attr.id]="id + '-panel'" [attr.aria-multiselectable]="multiple" [ngClass]="panelClass"
+        [style.height.px]="suggestedHeight" [@transformPanel]="'showing'"
+        (@transformPanel.done)="_panelDoneAnimatingStream.next($event.toState)" (keydown)="_handleKeydown($event)">
+        <ng-container nova-outlet></ng-container>
+    </div>
+</ng-template>

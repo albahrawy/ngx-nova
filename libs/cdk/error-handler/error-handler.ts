@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { IStringDictioanry } from "@ngx-nova/js-extensions";
+import { IStringDictionary } from "@ngx-nova/js-extensions";
 import { EMPTY, Observable, OperatorFunction, catchError, switchMap, throwError } from "rxjs";
 import { NOVA_LOCALIZER } from "@ngx-nova/cdk/localization";
 import { ErrorHandleType, INovaObservableErrorHandler, NOVA_LOGGER_SERVICE } from "./types";
@@ -32,7 +32,7 @@ export class ObservableErrorHandler implements INovaObservableErrorHandler {
                             reader.readAsText(e.error);
                         }).pipe(switchMap(blobText => this._throwModifyError(blobText, isTranslate, logError)));
                     } else if (e instanceof HttpErrorResponse) {
-                        let stringError: string | IStringDictioanry = '';
+                        let stringError: string | IStringDictionary = '';
                         if (typeof e.error === 'string') {
                             if (!e.error.startsWith('<!DOCTYPE html>'))
                                 stringError = e.error;
@@ -41,7 +41,7 @@ export class ObservableErrorHandler implements INovaObservableErrorHandler {
                         }
                         return this._throwModifyError(stringError || e.message || 'HttpErrors.ServerError', isTranslate, logError);
                     } else {
-                        const stringError: string | IStringDictioanry = typeof e === 'string' ? e : e.error;
+                        const stringError: string | IStringDictionary = typeof e === 'string' ? e : e.error;
                         return this._throwModifyError(stringError || e.message || 'HttpErrors.ServerError', isTranslate, logError);
                     }
                 }
@@ -49,7 +49,7 @@ export class ObservableErrorHandler implements INovaObservableErrorHandler {
         });
     }
 
-    private _throwModifyError(error: string | IStringDictioanry, isTranslate?: boolean, logError?: boolean): Observable<never> {
+    private _throwModifyError(error: string | IStringDictionary, isTranslate?: boolean, logError?: boolean): Observable<never> {
 
         let errorString: string = '';
         if (!!isTranslate || typeof error != 'string')

@@ -1,0 +1,21 @@
+<div class="mat-date-range-input-container" cdkMonitorSubtreeFocus (cdkFocusChange)="_focusChanged($event)">
+  <div class="mat-date-range-input-wrapper">
+    <input nvStartDate [placeholder]="startPlaceholder" [readonly]="readonly"
+      [required]="isRequired==='start'||isRequired==='both'" [formControl]="startCtrl"
+      (dateChange)="_onDateChange($event)" [dateFormat]="dateFormat">
+    <span class="mat-date-range-input-mirror" aria-hidden="true">{{_getInputMirrorValue('start')}}</span>
+  </div>
+
+  <span class="mat-date-range-input-separator"
+    [class.mat-date-range-input-separator-hidden]="_shouldHideSeparator()">{{separator}}</span>
+
+  <div class="mat-date-range-input-wrapper mat-date-range-input-end-wrapper">
+    <input nvEndDate [placeholder]="endPlaceholder" [readonly]="readonly"
+      [required]="isRequired==='end'||isRequired==='both'" [formControl]="endCtrl" (dateChange)="_onDateChange($event)"
+      [dateFormat]="dateFormat">
+    <span class="mat-date-range-input-mirror" aria-hidden="true">{{_getInputMirrorValue('end')}}</span>
+  </div>
+  <mat-datepicker-toggle [for]="picker" [class.datePicker-toggle-read-only]="readonly"
+    [disabled]="disabled||readonly"></mat-datepicker-toggle>
+</div>
+<mat-date-range-picker #picker></mat-date-range-picker>

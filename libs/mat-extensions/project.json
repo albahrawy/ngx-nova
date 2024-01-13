@@ -36,7 +36,13 @@
         "lintFilePatterns": [
           "libs/mat-extensions/**/*.ts",
           "libs/mat-extensions/**/*.html",
-          "libs/mat-extensions/package.json"
+          "libs/mat-extensions/package.json",
+          "libs/mat-extensions/buttons/**/*.ts",
+          "libs/mat-extensions/buttons/**/*.html",
+          "libs/mat-extensions/inputs/**/*.ts",
+          "libs/mat-extensions/inputs/**/*.html",
+          "libs/mat-extensions/date-adapter/**/*.ts",
+          "libs/mat-extensions/date-adapter/**/*.html"
         ]
       }
     }

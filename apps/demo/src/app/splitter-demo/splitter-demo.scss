@@ -1,0 +1,83 @@
+.host-component,
+.p-element {
+    width: 100%;
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center !important
+}
+
+.justify-content-center {
+    justify-content: center !important
+}
+
+.flex {
+    display: flex !important
+}
+
+.col {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: .5rem
+}
+
+.card {
+    width: 500px;
+    background: var(--surface-card);
+    border: var(--card-border);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem
+}
+
+.mb-5 {
+    margin-bottom: 2rem !important
+}
+
+.p-splitter {
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-radius: 6px;
+    color: #4b5563;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.p-splitter .p-splitter-gutter {
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    background: #f9fafb;
+}
+
+.p-splitter .p-splitter-gutter .p-splitter-gutter-handle {
+    background: #e5e7eb;
+}
+
+.p-splitter .p-splitter-gutter-resizing {
+    background: #e5e7eb;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container,.container-fluid,.container-lg,.container-md,.container-sm,.container-xl,.container-xxl {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto
+}
+
+.split-example {
+    height: 300px;
+    outline: 5px dashed #f9d676;
+    margin: 20px
+}

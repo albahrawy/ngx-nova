@@ -1,0 +1,18 @@
+:host{
+    width: 100%;
+    height: 100%;
+}
+.horizontal-scroll-table {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .scroll-view-port {
+    height: 600px;
+    width: 100%;
+  }
+  
+  .virtual-horizontal-cell {
+    width: 200px;
+  }
+  

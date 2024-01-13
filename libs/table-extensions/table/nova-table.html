@@ -1,0 +1,70 @@
+<mat-table class="nova-mat-table" [class.nova-mat-table--disabled]="disabled" #vsDirective="tableVirtualScroll"
+  [virtual-scroll]="dataSource" [keyboard-navigation]="keyboardNavigation" [selectable]="selectable"
+  [cellHeight]="rowHeight" [attachFilter]="attachFilter" [reorderColumns]="reorderColumns" [sortable]="sortable"
+  [showFilter]="showFilter" [showFooter]="showFooter" [showHeader]="showHeader" [editable]="editable"
+  [editWithEnter]="editWithEnter" [editWithF2]="editWithF2" [displayedColumns]="displayedColumns"
+  [responsive]="responsive?.enabled" [responsiveHeader]="responsive?.responsiveHeader" [responsive-xs]="responsive?.xs"
+  [responsive-sm]="responsive?.sm" [responsive-md]="responsive?.md" [responsive-lg]="responsive?.lg"
+  [responsive-xl]="responsive?.xl" [responsive-sl]="responsive?.sl" [editablePredicate]="editablePredicate"
+  [selectionPredicate]="selectionPredicate">
+
+  @if(_showSelectColumn){
+  <ng-container matColumnDef="select-column">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-filter-cell *matFilterCellDef></mat-filter-cell>
+    <mat-cell *matCellDef editor="selectable"></mat-cell>
+    <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+  </ng-container>
+  }
+
+  @if(showIndex){
+  <ng-container matColumnDef="row-no-column">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-filter-cell *matFilterCellDef></mat-filter-cell>
+    <mat-cell *matCellDef="let index=index">{{vsDirective.startIndex + index + 1}}</mat-cell>
+    <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+  </ng-container>
+  }
+
+  @if(iconColumn!=='none'){
+  <ng-container matColumnDef="icon-column">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-filter-cell *matFilterCellDef></mat-filter-cell>
+    <mat-cell *matCellDef="let item">
+
+      @if(iconType==='avatar'){
+      <img class="nova-table-icon-column-avatar" [src]="iconMemberFn|evaluate:item">
+      }@else {
+      <mat-icon class="nova-table-icon-column-icon" [color]="iconColor">
+        {{iconMemberFn|evaluate:item}}</mat-icon>
+      }
+    </mat-cell>
+    <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+  </ng-container>
+  }
+
+  @for (column of columns; track column) {
+  <ng-container [matColumnDef]="column.name" [sticky]="column.sticky==='start'" [stickyEnd]="column.sticky==='end'"
+    [cellFormatter]="column.cellFormatter|formatTranslate" [footerFormatter]="column.footerFormatter|formatTranslate"
+    [cellValueGetter]="column.cellValueGetter" [cellValueSetter]="column.cellValueSetter"
+    [footerAggregation]="column.footerAggregation" [cellDefaultValue]="column.cellDefaultValue"
+    [footerDefaultValue]="column.footerDefaultValue" [dataKey]="column.dataKey|novaTranslate"
+    [readOnly]="column.readOnly" [label]="column.headerText|novaTranslate">
+    <mat-header-cell *matHeaderCellDef [resizable]="column.resizable" [isDraggable]="column.draggable"
+      [columnWidth]="column.width" [sortable]="column.sortable">{{column.headerText|novaTranslate}}</mat-header-cell>
+    <mat-filter-cell *matFilterCellDef="column.filter?.type;options: column.filter?.options" matFilterComponent
+      [currentOperation]="column.filter?.initialOperation" [operations]="column.filter?.operations">
+    </mat-filter-cell>
+    <mat-cell *matCellDef [editor]="column.editor?.type" [options]="column.editor?.options"></mat-cell>
+    <mat-footer-cell *matFooterCellDef reactive-footer></mat-footer-cell>
+  </ng-container>
+  }
+
+  <mat-header-row *matHeaderRowDef="displayedColumns,sticky:stickyHeader"></mat-header-row>
+  <mat-filter-row *matFilterRowDef="displayedColumns,sticky:stickyFilter"></mat-filter-row>
+  <div class="mat-row no-data-row" *matNoDataRow>
+    <div class="mat-cell">{{noDataText|novaTranslate}}</div>
+  </div>
+  <mat-footer-row *matFooterRowDef="displayedColumns,sticky:stickyFooter"></mat-footer-row>
+  <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+</mat-table>

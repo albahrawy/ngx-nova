@@ -1,0 +1,51 @@
+<cdk-table class="table-area" [virtual-scroll]="buttons.dataSource" [rowHeight]="buttons.rowHeight">
+
+  <ng-container cdkColumnDef="position">
+    <cdk-header-cell *cdkHeaderCellDef [draggable]="true">No.</cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{element.position}} </cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef>Footer</cdk-footer-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="date">
+    <cdk-header-cell *cdkHeaderCellDef [draggable]="true">Date.</cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{element.date|date}} </cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef>Footer</cdk-footer-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="name">
+    <cdk-header-cell *cdkHeaderCellDef [draggable]="true"> Name
+    </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"><span>{{element.name_en}}</span></cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef></cdk-footer-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="active">
+    <cdk-header-cell *cdkHeaderCellDef> Active
+    </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"><span>{{element.active}}</span></cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef></cdk-footer-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="weight">
+    <cdk-header-cell *cdkHeaderCellDef [draggable]="false"> Weight
+    </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"><span>{{element.weight}}</span></cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef></cdk-footer-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="symbol">
+    <cdk-header-cell *cdkHeaderCellDef [draggable]="true"> Symbol </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element" [draggable]="true"> {{element.symbol}} </cdk-cell>
+    <cdk-footer-cell *cdkFooterCellDef>Symbol Footer</cdk-footer-cell>
+  </ng-container>
+
+  <cdk-header-row *cdkHeaderRowDef="buttons.displayedColumns,sticky:true"></cdk-header-row>
+  <cdk-footer-row *cdkFooterRowDef="buttons.displayedColumns,sticky:true"></cdk-footer-row>
+
+  <cdk-row *cdkRowDef="let row; columns:buttons.displayedColumns"></cdk-row>
+</cdk-table>
+
+<table-buttons #buttons color="primary">
+  <!-- <button cdk-button="stroked" (click)="responsive=!responsive">Toggle Responsive</button> -->
+</table-buttons>
+<!-- <button (click)="changeFilterConfig()">changeFilter</button> -->

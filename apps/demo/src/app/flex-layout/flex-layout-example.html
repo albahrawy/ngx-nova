@@ -1,7 +1,6 @@
 <h2>Flex Layout</h2>
 <div class="form-div">
-    <div layout-flex="row wrap" flex-gap="5px" flex-limit layout-flex-align="start" flex-gap-md="10px"
-        flex-gap-xs="1px">
+    <div [layout-flex]="'row wrap'" #t [flex-gap]="flexGap" layout-flex-align="start" [flex-gap-md]="flexGapMd">
         @for (item of config; track $index)
         {
         <div class="flex-box-example" layout-flex-element [flex-basis]="item.regualrBase" [flex-basis-xs]="item.xsBase"
@@ -19,11 +18,6 @@
 
 </div>
 <div class="button-area">
-    <!-- <button mat-button="stroked" color="primary" (click)="numberMask='9-9-99-77'">Change Number Mask</button>
-    <button mat-button="stroked" color="primary" (click)="allowClear=!allowClear">Toggle AllowClear</button>
-    <button mat-button="stroked" color="primary" (click)="showButtons=!showButtons">Toggle Numberic Buttons</button>
-    <button mat-button="stroked" color="primary" (click)="toggleReadOnly()">Toggle ReadOnly</button>
-    <button mat-button="stroked" color="primary" (click)="toggleDisabled()">Toggle Disbale</button>
-    <button mat-button="stroked" color="primary" (click)="toggleFormat()">Toggle Date Format</button> -->
-
+    <button mat-button="stroked" color="warn" (click)="removeGaps()">Remove Gaps</button>
+    <button mat-button="stroked" color="warn" (click)="addGaps()">Add Gaps</button>
 </div>

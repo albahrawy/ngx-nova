@@ -1,33 +1,29 @@
-import { ChangeDetectorRef, Inject, Optional, Pipe, PipeTransform, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { IStringDictioanry } from '@ngx-nova/js-extensions';
+import { Pipe, PipeTransform, inject } from '@angular/core';
+import { IStringDictionary } from '@ngx-nova/js-extensions';
 import { NovaDefaultLocalizer } from './localizer';
-import { INovaLocalizer, NOVA_LOCALIZER } from './types';
+import { NOVA_LOCALIZER } from './types';
+
 //TODO: check pure - true
 @Pipe({ name: '' })
 // eslint-disable-next-line @angular-eslint/use-pipe-transform-interface
-abstract class NovaTranslateBasePipe  {
+abstract class NovaTranslateBasePipe {
 
-    private lastKey: string | null = null;
+    protected localizer = inject(NOVA_LOCALIZER, { optional: true }) ?? inject(NovaDefaultLocalizer);
+    private lastKey: string | IStringDictionary | null = null;
+    private lastValue: string | string[] | IStringDictionary | null = null;
+    private lastLang: string | null = null;
 
-    constructor(private cdr: ChangeDetectorRef,
-        @Optional() @Inject(NOVA_LOCALIZER) protected localizer?: INovaLocalizer) {
-        this.localizer = localizer ?? inject(NovaDefaultLocalizer);
-        this.localizer?.onChange.pipe(takeUntilDestroyed()).subscribe(() => {
-            this.lastKey = null;
-            this.cdr.markForCheck();
-        });
-    }
-
-    protected transformValue<T extends string | string[] | IStringDictioanry = string>
-        (value?: string | IStringDictioanry, returnOriginal: boolean = true, prefix?: string): T | null {
+    protected transformValue<T extends string | string[] | IStringDictionary = string>
+        (value?: string | IStringDictionary | null, returnOriginal: boolean = true, prefix?: string): T | null {
         if (!value)
             return null;
-        if (this.lastKey)
-            return this.lastKey as T;
+        if (this.lastKey === value && this.lastLang === this.localizer.currentLang())
+            return this.lastValue as T;
 
-        this.lastKey = this.localizer?.translate?.(value, returnOriginal, prefix) ?? null;
-        return this.lastKey as T;
+        this.lastKey = value;
+        this.lastLang = this.localizer.currentLang();
+        this.lastValue = this.localizer?.translate?.(value, returnOriginal, prefix) ?? null;
+        return this.lastValue as T;
     }
 }
 
@@ -38,7 +34,7 @@ abstract class NovaTranslateBasePipe  {
 })
 export class NovaTranslatePipe extends NovaTranslateBasePipe implements PipeTransform {
 
-    transform(value?: string | IStringDictioanry, returnOriginal: boolean = true, prefix?: string): string | null {
+    transform(value?: string | IStringDictionary | null, returnOriginal: boolean = true, prefix?: string): string | null {
         return super.transformValue(value, returnOriginal, prefix);
     }
 }
@@ -50,7 +46,7 @@ export class NovaTranslatePipe extends NovaTranslateBasePipe implements PipeTran
 })
 export class NovaTranslateArrayPipe extends NovaTranslateBasePipe implements PipeTransform {
 
-    transform(value?: string | IStringDictioanry, returnOriginal: boolean = true, prefix?: string): string[] | null {
+    transform(value?: string | IStringDictionary | null, returnOriginal: boolean = true, prefix?: string): string[] | null {
         return super.transformValue<string[]>(value, returnOriginal, prefix);
     }
 }
@@ -62,7 +58,7 @@ export class NovaTranslateArrayPipe extends NovaTranslateBasePipe implements Pip
 })
 export class NovaTranslateObjectPipe extends NovaTranslateBasePipe implements PipeTransform {
 
-    transform(value?: string | IStringDictioanry, returnOriginal: boolean = true, prefix?: string): IStringDictioanry | null {
-        return super.transformValue<IStringDictioanry>(value, returnOriginal, prefix);
+    transform(value?: string | IStringDictionary | null, returnOriginal: boolean = true, prefix?: string): IStringDictionary | null {
+        return super.transformValue<IStringDictionary>(value, returnOriginal, prefix);
     }
 }

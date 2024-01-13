@@ -1,0 +1,23 @@
+{
+	"appTitle": {
+		"en": "Appointment System",
+		"ar": "نظام المواعيد"
+	},
+	"languages": [
+		{
+			"symbol": "en",
+			"name": "English",
+			"isRTL": false
+		},
+		{
+			"symbol": "ar",
+			"name": "Arabic",
+			"isRTL": true
+		}
+	],
+	"defaultLang": "en",
+	"localizeSource": {
+		"type": "local",
+		"path": "assets/localization"
+	}
+}

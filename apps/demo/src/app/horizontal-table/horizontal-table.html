@@ -1,0 +1,24 @@
+<cdk-virtual-scroll-viewport
+  class="scroll-view-port"
+  orientation="horizontal"
+  itemSize="200"
+>
+  <mat-table
+    [dataSource]="data"
+    class="mat-elevation-z8 horizontal-scroll-table"
+  >
+    @for (column of columnsToDisplay; track column) {
+    <ng-container [matColumnDef]="column">
+      <mat-header-cell class="virtual-horizontal-cell" *matHeaderCellDef> {{column}} </mat-header-cell>
+      <mat-cell class="virtual-horizontal-cell" *matCellDef="let element"> {{element[column]}} </mat-cell>
+    </ng-container>
+    }
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+  </mat-table>
+</cdk-virtual-scroll-viewport>
+
+<!-- Copyright 2023 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->

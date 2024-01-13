@@ -1,0 +1,21 @@
+:host {
+    overflow: hidden;
+}
+
+.nova-mat-table {
+    width: 100%;
+    height: 100%;
+
+    &.nova-mat-table--disabled {
+        pointer-events: none;
+        user-select: none;
+        cursor: default;
+        opacity: .7;
+
+        ::ng-deep .mat-datepicker-toggle {
+            pointer-events: none !important;
+            user-select: none;
+            cursor: default;
+        }
+    }
+}

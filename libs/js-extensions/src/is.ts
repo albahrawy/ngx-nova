@@ -24,6 +24,14 @@ const getType = (value: unknown) => Object.prototype.toString.call(value).slice(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isType = <T>(value: unknown, type: string, instance: T): value is T => typeof value === type || value instanceof (instance as any);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isDOM = (value: any): value is HTMLElement => {
+    return value != null && (
+        (window.HTMLElement && value instanceof HTMLElement) ||
+        (typeof value === "object" && value.nodeType === 1 && value.nodeName)
+    );
+}
+
 /**
  * Type-checking utility function to determine if the given value is an object.
  * @param {any} value - The value to be checked.
@@ -93,8 +101,10 @@ export const isSymbol = (value: unknown): value is symbol => typeof value == 'sy
  * @param {any} value - The value to be checked.
  * @returns {boolean} - True if the value is a array, false otherwise.
  */
-export const isArray = (value: unknown): value is Array<unknown> => Array.isArray?.(value) || value instanceof Array;
 
+export function isArray<T>(value: T[] | readonly T[] | unknown): value is Array<T> | ReadonlyArray<T> {
+    return Array.isArray?.(value) || value instanceof Array;
+}
 /**
  * Type-checking utility function to determine if the given value is a TypedArray.
  * @param {any} value - The value to be checked.

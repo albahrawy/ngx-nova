@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { NOVA_OBSERVABLE_ERROR_HANDLER } from "@ngx-nova/cdk/error-handler";
-import { IGenericArray, IGenericDictioanry, isObject, jsonMap, toStringValue, } from "@ngx-nova/js-extensions";
+import { IGenericArray, IGenericDictionary, isObject, jsonMap, toStringValue, } from "@ngx-nova/js-extensions";
 import { Observable, switchMap } from "rxjs";
 import { HttpHandleOptions, HttpReqOptions, INovaHttpService, NOVA_HTTP_URL_RESOLVER } from "./types";
 
@@ -15,13 +15,13 @@ export class NovaHttpService implements INovaHttpService {
     protected urlResolver = inject(NOVA_HTTP_URL_RESOLVER);
     protected errorHandler = inject(NOVA_OBSERVABLE_ERROR_HANDLER, { optional: true });
 
-    get(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    get(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptions): IGenericObservable {
         const urlSegments = this.assignArgs(handleOptions?.argsType, reqOptions, args);
         return this.placeRequest(url, urlSegments, handleOptions, fullUrl => this.httpClient.get(fullUrl, reqOptions));
     }
 
-    delete(url: string | string[], args?: IGenericDictioanry | IGenericArray,
+    delete(url: string | string[], args?: IGenericDictionary | IGenericArray,
         handleOptions?: HttpHandleOptions, reqOptions?: HttpReqOptions): IGenericObservable {
         const urlSegments = this.assignArgs(handleOptions?.argsType, reqOptions, args);
         return this.placeRequest(url, urlSegments, handleOptions, fullUrl => this.httpClient.delete(fullUrl, reqOptions));
@@ -39,7 +39,7 @@ export class NovaHttpService implements INovaHttpService {
         return this.placeRequest(url, undefined, handleOptions, fullUrl => this.httpClient.patch(fullUrl, body, reqOptions));
     }
 
-    private assignArgs(argsType?: 'path' | 'query', reqOptions?: HttpReqOptions, args?: IGenericDictioanry | IGenericArray): string[] | undefined {
+    private assignArgs(argsType?: 'path' | 'query', reqOptions?: HttpReqOptions, args?: IGenericDictionary | IGenericArray): string[] | undefined {
         if (!args)
             return;
         if (argsType === 'query') {

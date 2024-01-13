@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IValueFormatter } from './types';
-import { formatDate, isDate, isNumber, toStringValue } from '@ngx-nova/js-extensions';
-import { formatNumber } from '@angular/common';
-
+import { formatDate, formatNumber, isDate, isNumber, toStringValue } from '@ngx-nova/js-extensions';
+//TODO: add support for misc. text in format
 @Injectable({ providedIn: 'root' })
 export class DefaultValueFormatter implements IValueFormatter {
 

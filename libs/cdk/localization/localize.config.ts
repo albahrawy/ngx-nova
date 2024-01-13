@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { IStringDictioanry } from "@ngx-nova/js-extensions";
+import { IStringDictionary } from "@ngx-nova/js-extensions";
 import { Observable, catchError, map, of, throwError } from "rxjs";
 import { ILanguage, ILocalizeConfig, NOVA_LOCALIZER_CONFIG_PATH } from "./types";
 import { HttpClient } from "@angular/common/http";
@@ -10,7 +10,7 @@ export class NovaDefaultLocalizerConfig implements ILocalizeConfig {
     private configPath = inject(NOVA_LOCALIZER_CONFIG_PATH, { optional: true });
     private _http = inject(HttpClient);
 
-    appTitle?: string | IStringDictioanry;
+    appTitle?: string | IStringDictionary;
     languages?: ILanguage[];
     defaultLang?: string;
     localizeSource?: {

@@ -54,12 +54,13 @@ export function toBoolean(value: unknown): boolean {
     return false;
 }
 
-export function toNumber(value: unknown, defaultValue?: number): number {
+export function toNumber(value: unknown): number;
+export function toNumber(value: unknown, defaultValue: number): number;
+export function toNumber(value: unknown, defaultValue: null): number | null;
+export function toNumber(value: unknown, defaultValue: number | null = 0): number | null {
     if (typeof value === 'number')
         return value;
 
-    if (defaultValue === undefined)
-        defaultValue = 0;
     if (value == null)
         return defaultValue;
     if (isNumber(value))
@@ -89,6 +90,14 @@ export function toInt(value: unknown): number {
     if (newValue === Infinity || newValue === -Infinity)
         return (newValue < 0 ? -1 : 1) * Number.MAX_SAFE_INTEGER;
     return newValue - (newValue % 1);
+}
+
+export function toPositiveNumber(value: unknown): number;
+export function toPositiveNumber(value: unknown, defaultValue: number): number;
+export function toPositiveNumber(value: unknown, defaultValue: null): number | null;
+export function toPositiveNumber(value: unknown, defaultValue: number | null = 0): number | null {
+    const r = toNumber(value);
+    return (r >= 0) ? r : defaultValue;
 }
 
 export function toDate(value: unknown, parseFormat?: string | string[]): Date | null {

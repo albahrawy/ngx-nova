@@ -1,0 +1,27 @@
+<h2>Material-Input-Extensiosn</h2>
+<div class="form-div" [formGroup]="formGroup">
+    <div layout-flex="row wrap" flex-gap="5px" flex-limit layout-flex-align="start" flex-gap-md="10px"
+        flex-gap-xs="1px">
+        <mat-form-field [subscriptSizing]="'dynamic'" [subscriptSizing]="'dynamic'" layout-flex-element flex-basis="50"
+            flex-basis-xs="100">
+            <mat-label>List Select</mat-label>
+            <nova-select [disabled]="disabled" [multiple]="multiple" [allowClear]="allowClear"
+                [categorized]="categorized" [dataSource]="asyncDataSource" [optionHeight]="optionHeight"
+                displayMember="name" valueMember="value" iconMember="icon" [showSearch]="showSearch"
+                disableMember="disable" [iconColor]="'accent'" showIndex="true" showIcon="true">
+            </nova-select>
+        </mat-form-field>
+    </div>
+</div>
+<div class="button-area">
+    <button mat-button="stroked" color="primary" (click)="allowClear=!allowClear">Toggle AllowClear</button>
+    <button mat-button="stroked" color="primary" (click)="optionHeight=optionHeight+5">+5 Option Height</button>
+    <button mat-button="stroked" color="primary" (click)="optionHeight=optionHeight-2">-2 Option Height</button>
+    <button mat-button="stroked" color="primary" (click)="toggleReadOnly()">Toggle ReadOnly</button>
+    <button mat-button="stroked" color="primary" (click)="toggleDisabled()">Toggle Disbale</button>
+    <button mat-button="stroked" color="primary" (click)="toggleCategorize()">Toggle Categorized</button>
+    <button mat-button="stroked" color="primary" (click)="multiple=!multiple">Toggle Multiple</button>
+    <button mat-button="stroked" color="primary" (click)="showSearch=!showSearch">Toggle Search</button>
+    <button mat-button="stroked" color="primary" (click)="toggleDataSource()">Toggle DataSource</button>
+
+</div>

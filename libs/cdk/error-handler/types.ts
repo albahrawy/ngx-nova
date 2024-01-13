@@ -1,5 +1,5 @@
 import { InjectionToken } from "@angular/core";
-import { IGenericDictioanry } from "@ngx-nova/js-extensions";
+import { IGenericDictionary } from "@ngx-nova/js-extensions";
 import { OperatorFunction } from "rxjs";
 
 export const NOVA_OBSERVABLE_ERROR_HANDLER = new InjectionToken<INovaObservableErrorHandler>('nova-observable-error-handler');
@@ -12,5 +12,5 @@ export const NOVA_LOGGER_SERVICE = new InjectionToken<ILogger>('nova_logger_serv
 
 export interface ILogger {
     logError(error: string | Error): void;
-    logInfo(info: string | IGenericDictioanry): void;
+    logInfo(info: string | IGenericDictionary): void;
 }

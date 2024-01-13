@@ -5,9 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at the root.
  */
-import { isObject, isString } from "./is";
+import { isEmpty, isObject, isString } from "./is";
 import { toStringValue } from "./to";
-import { IGenericDictioanry } from "./types";
+import { IDictionary, IGenericDictionary, Nullable } from "./types";
 
 // export namespace json {
 /**
@@ -45,9 +45,9 @@ export function jsonParse(input: string | object, reviver?: (this: unknown, key:
  * @param connector the character used to connect nested keys. default value is '-'
  * @returns object contains one level with all nested properties.
  */
-export function jsonFlatten(source: IGenericDictioanry, connector = '_') {
-    const target: IGenericDictioanry = {};
-    function _flatObject(srcObj: IGenericDictioanry, key: string): void {
+export function jsonFlatten(source: IGenericDictionary, connector = '_') {
+    const target: IGenericDictionary = {};
+    function _flatObject(srcObj: IGenericDictionary, key: string): void {
         jsonForEach(srcObj, (k, v) => {
             const newKey = key ? `${key}${connector}${k}` : k;
             if (isObject(v))
@@ -90,14 +90,52 @@ export function jsonForEach(source: { [key: string]: unknown }, callback: (key: 
  * @param ignoreNull true to eliminate keys with null or undefined value from the new object. default is false.
  * @returns A new object with each property with key and value being the result of the callback function.
  */
-export function jsonMap(source: IGenericDictioanry, callback: (value: unknown, key: string) => unknown, ignoreNull: boolean = false) {
+export function jsonMap<T>(source: IDictionary<T>, callback: (value: T, key: string) => unknown, ignoreNull: boolean = false) {
     return Object.keys(source).reduce((ob, k) => {
         const v = source[k];
         const res = callback(v, k);
         if (res != null || !ignoreNull)
             ob[k] = res;
         return ob;
-    }, {} as IGenericDictioanry);
+    }, {} as IGenericDictionary);
+};
+
+
+/**
+ * An iterative method. It calls a provided callback function once for each property in an object and constructs a new Array from the results.
+ * @param source A JavaScript value, usually an object.
+ * @param callback A function to execute for each property in the object. Its return value is added as an item in the new Array.
+ * The function is called with the following arguments value and key.
+ * @param ignoreNull true to eliminate keys with null or undefined value from the new array. default is false.
+ * @returns A new Array contains each property value being the result of the callback function.
+ */
+export function jsonToArray<T, O>(source: IDictionary<T>, callback: (value: T, key: string) => O, ignoreNull: boolean = false) {
+    return Object.keys(source).reduce((ob, k) => {
+        const v = source[k];
+        const res = callback(v, k);
+        if (res != null || !ignoreNull)
+            ob.push(res);
+        return ob;
+    }, [] as O[]);
+};
+
+/**
+ * Convert JSON object to array of key-value pair.
+ * @param source A JavaScript value, usually an object.
+ * @param ignoreNull true to eliminate keys with null or undefined value from the returned result. default is true.
+ * @returns Array of key-value pair from Object key and value.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function jsonToKeyValueArray<TValue>(source: Nullable<IDictionary<TValue>>, ignoreNull: boolean = true): ({ key: string; value: TValue; })[] {
+    if (!source || isEmpty(source))
+        return [];
+    const result: ({ key: string; value: TValue; })[] = [];
+    Object.keys(source).forEach(key => {
+        const value = source[key];
+        if (value != null || !ignoreNull)
+            result.push({ key, value });
+    });
+    return result;
 };
 
 /**
@@ -108,7 +146,7 @@ export function jsonMap(source: IGenericDictioanry, callback: (value: unknown, k
  * @returns valid XML string.
  */
 
-export function jsonToXml(obj: IGenericDictioanry, rootKey = 'Data', placeInNode = false): string {
+export function jsonToXml(obj: IGenericDictionary, rootKey = 'Data', placeInNode = false): string {
     const doc = document.implementation.createDocument('', '', null);
     return createXmlElement(doc.createElement(rootKey), obj, placeInNode).outerHTML;
 }
@@ -121,7 +159,7 @@ function addTextNode(element: Element, key: string, value: string): void {
     element.appendChild(element.ownerDocument.createElement(key)).textContent = value;
 };
 
-function createXmlElement(node: HTMLElement, obj: IGenericDictioanry, isNode: boolean): HTMLElement {
+function createXmlElement(node: HTMLElement, obj: IGenericDictionary, isNode: boolean): HTMLElement {
     for (const [key, value] of Object.entries(obj))
         addXmlValue(node, key, value, isNode);
     return node;

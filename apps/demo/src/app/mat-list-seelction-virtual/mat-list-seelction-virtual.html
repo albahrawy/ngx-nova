@@ -1,0 +1,28 @@
+<h4>{{{categorized,optionHeight,togglePosition,multiple,showIndex,showTitle,iconType}|json}}</h4>
+
+<div class="main-div">
+    <mat-form-field appearance="outline" style="width: 100%" color="primary">
+        <mat-label>{{listLable|novaTranslate}}</mat-label>
+        <nova-selection-list #list style="height: 400px" [multiple]="multiple" [formControl]="frmControl"
+            [categorized]="categorized" [dataSource]="typesOfShoes" [optionHeight]="optionHeight" displayMember="name"
+            valueMember="value" [iconMember]="iconMember" disableMember="disable" [iconColor]="'accent'"
+            [togglePosition]="togglePosition" [showIndex]="showIndex" [iconType]="iconType" [showTitle]="showTitle">
+        </nova-selection-list>
+    </mat-form-field>
+</div>
+<div class="values-div">{{frmControl.value|json}}</div>
+<div class="button-area">
+    <button mat-button="stroked" color="primary" (click)="changeDataSource()">change DataSource</button>
+    <button mat-button="stroked" color="primary" (click)="optionHeight=optionHeight+5">+5 Option Height</button>
+    <button mat-button="stroked" color="primary" (click)="optionHeight=optionHeight-2">-2 Option Height</button>
+    <button mat-button="stroked" color="primary" (click)="toggleDisable()">Toggle Disable</button>
+    <button mat-button="stroked" color="primary" (click)="togglePositionValue()">Toggle Position</button>
+    <button mat-button="stroked" color="primary" (click)="toggleIconType()">Toggle Icon Type</button>
+    <button mat-button="stroked" color="primary" (click)="toggleCategorize()">Toggle Categorized</button>
+    <button mat-button="stroked" color="primary" (click)="multiple=!multiple">Toggle Multiple</button>
+    <button mat-button="stroked" color="primary" (click)="showIndex=!showIndex">Toggle index</button>
+    <button mat-button="stroked" color="primary" (click)="showTitle=!showTitle">Toggle Title</button>
+    <button mat-button="stroked" color="primary" (click)="changeControlValue()">Change Control Value</button>
+    <button mat-button="stroked" color="primary" (click)="list.selectAll(true)">SelectAll</button>
+    <button mat-button="stroked" color="primary" (click)="list.deselectAll()">DeselectAll</button>
+</div>

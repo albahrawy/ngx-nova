@@ -1,0 +1,53 @@
+@if (showSearch) {
+<mat-form-field class="search-input" color="primary">
+  <mat-icon matSuffix>search</mat-icon>
+  <input matInput (input)="_onFilterInput($event)" #searchInput autocomplete="off" tabindex="0" />
+</mat-form-field>
+}
+@switch (categorized) {
+@case ('split') {
+<div class="selected-options-section" [style.height.px]="_selectedHeight()">
+  <ng-container *ngTemplateOutlet="virtualList; context: {$implicit:_data().selected, _increment:0,_id:'selected'}">
+  </ng-container>
+</div>
+@if (_data().selected.length) {
+<mat-divider class="list-divider"></mat-divider>
+}
+<ng-container
+  *ngTemplateOutlet="virtualList; context: {$implicit:_data().noneSelected, _increment:_data().selected.length,_id:'none-selected'}">
+</ng-container>
+} @default {
+<ng-container *ngTemplateOutlet="virtualList; context: {$implicit:_data().filtered, _increment:0,_id:'current-data'}">
+</ng-container>
+} }
+
+<ng-template #virtualList let-data let-increment="_increment" let-id="_id">
+  <cdk-virtual-scroll-viewport [id]="id" [itemSize]="_optionHeight()" class="list-virtual-scroll-wrapper">
+    <nova-list-option *cdkVirtualFor="let item of data; let i=index; let odd = odd; let even = even; trackBy:_identify"
+      class="nova-list-option" [class.nova-list-option-odd]="odd" [class.nova-list-option-even]="even" [color]="color"
+      [index]="i+increment+1" [data]="item" [value]="_bindingConfig.valueMemberFn|evaluate:item"
+      [disabled]="_bindingConfig.disableMemberFn|evaluate:item" [iconTemplate]="iconTemplate"
+      [titleTemplate]="titleTemplate" [indexTemplate]="indexTemplate" [toggleType]="_optToggleType"
+      [iconType]="_optIconType" [togglePosition]="_optTogglePosition" [iconPosition]="_optIconPosition">
+    </nova-list-option>
+  </cdk-virtual-scroll-viewport>
+</ng-template>
+
+<ng-template #iconTemp let-item>
+  <mat-icon class="mat-mdc-list-item-icon list-option-icon" [class.mdc-list-item__start]="_optIconPosition==='before'"
+    [class.mdc-list-item__end]="_optIconPosition ==='after'" [color]="iconColor">
+    {{_bindingConfig.iconMemberFn|evaluate:item}}</mat-icon>
+</ng-template>
+
+<ng-template #avatarTemp let-item>
+  <img class="mat-mdc-list-item-avatar" [class.mdc-list-item__start]="_optIconPosition==='before'"
+    [class.mdc-list-item__end]="_optIconPosition==='after'" [src]="_bindingConfig.iconMemberFn|evaluate:item">
+</ng-template>
+
+<ng-template #indexTemp let-value>
+  <span class="list-option-index mdc-list-item__primary-text">{{value}}</span>
+</ng-template>
+
+<ng-template #titleTemp let-item>
+  <div matListItemTitle>{{_bindingConfig.displayMemberFn|evaluate:item}}</div>
+</ng-template>

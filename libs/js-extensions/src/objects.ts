@@ -7,7 +7,7 @@
  */
 import { uniqueArray } from "./array";
 import { isArray, isDate, isNumber, isNumberString, isObject, isPrimitive, isRegExp, isTypedArray } from "./is";
-import { IGenericDictioanry, MergedObject } from "./types";
+import { IGenericDictionary, MergedObject } from "./types";
 
 
 
@@ -33,7 +33,7 @@ export function mergeObjects<T extends any[]>(...objects: [...T]): MergedObject<
 
     const mergeTwo = (first: unknown, second: unknown) => {
         if (isObject(first) && isObject(second)) {
-            const result: IGenericDictioanry = {};
+            const result: IGenericDictionary = {};
 
             for (const k in first) {
                 if (Object.hasOwn(first, k))
@@ -114,11 +114,19 @@ export function mergePartial<S extends object, T extends object, K extends keyof
  * @returns A deep copy of the input value.
  */
 export function copyObject<T>(value: T): T {
+    return copyObjectCore(value, new Map());
+}
+
+//TODO: fix recursive copy
+function copyObjectCore<T>(value: T, done: Map<unknown, unknown>): T {
+    if (done.has(value))
+        return done.get(value) as T;
     if (isPrimitive(value))
         return value;
+
     let copiedValue: unknown;
     if (isArray(value)) {
-        copiedValue = value.map((item) => copyObject(item));
+        copiedValue = value.map((item) => copyObjectCore(item, done));
     } else if (isDate(value))
         copiedValue = new Date(value.valueOf()) as T;
     else if (isTypedArray(value))
@@ -130,12 +138,13 @@ export function copyObject<T>(value: T): T {
         const target = Object.create(Object.getPrototypeOf(value));
         for (const key in value) {
             if (Object.prototype.hasOwnProperty.call(value, key)) {
-                target[key] = copyObject(value[key]);
+                target[key] = copyObjectCore(value[key], done);
             }
         }
         copiedValue = target;
     }
 
+    done.set(value, copiedValue);
     return copiedValue as T;
 }
 
@@ -154,9 +163,8 @@ export function getValue(obj: unknown, path: string | string[], defaultValue?: u
     if (!adjPath)
         return defaultValue;
     if (adjPath.length == 1)
-        return (obj as IGenericDictioanry)[adjPath[0]];
-    return adjPath.reduce((current, key) =>
-        current != null ? current[key] : undefined, obj as IGenericDictioanry) ?? defaultValue;
+        return (obj as IGenericDictionary)[adjPath[0]];
+    return adjPath.reduce((current, key) => current?.[key], obj as IGenericDictionary) ?? defaultValue;
 }
 
 /**
@@ -168,22 +176,22 @@ export function getValue(obj: unknown, path: string | string[], defaultValue?: u
  * @param path The path to the property, represented as a dot-separated string or an array of keys.
  * @param value The value to set at the specified path.
  * @param createIfNotExist (Optional) If `true`, creates the necessary nested objects/arrays if the path does not exist in the object.
- * @returns The modified object.
+ * @returns The same instance of object.
  */
 export function setValue<T>(obj: T, path: string | string[], value: unknown, createIfNotExist = false): T {
     if (isPrimitive(obj))
         return obj;
-    const objReord = obj as IGenericDictioanry;
     const pathSegments = typeof path === 'string' ? path.split('.') : isArray(path) ? path : [];
-    const lastIndex = pathSegments.length - 1;
-    pathSegments.reduce((sub, key, index) => {
+    const keyToSet = pathSegments.at(-1);
+    if (!keyToSet)
+        return obj;
+    const modifiedObj = pathSegments.slice(0, -1).reduce((sub, key, index) => {
         if (createIfNotExist && sub[key] === undefined) {
             sub[key] = isIndex(pathSegments[index + 1]) ? [] : {};
         }
         return sub[key];
-    }, objReord);
-
-    objReord[pathSegments[lastIndex]] = value;
-
+    }, obj as IGenericDictionary);
+    if (Object.hasOwn(modifiedObj, keyToSet) || createIfNotExist)
+        modifiedObj[keyToSet] = value;
     return obj;
 }

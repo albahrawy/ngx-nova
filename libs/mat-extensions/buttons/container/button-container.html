@@ -1,0 +1,25 @@
+@for (btn of _buttonArray; track btn) {
+@if(btn.args.isFab){
+<button mat-icon-button [color]="btn.args.color" [disabled]="btn.args.disabled||disabled" [class]="btn.args.cssClass"
+    [addOnProgress]="btn.args.progress.type" [progressColor]="btn.args.progress.color" [hidden]="btn.args.hidden"
+    [progressMode]="btn.args.progress.mode" [progressValue]="btn.args.progress.value" [style.order]="btn.args.order"
+    [progressPosition]="btn.args.progress.position" [progressVisible]="btn.args.progress.visible"
+    (click)="btnClicked(btn)">
+    <mat-icon>{{btn.args.icon}}</mat-icon>
+</button>
+}@else {
+<button mat-stroked-button [color]="btn.args.color" [disabled]="btn.args.disabled||disabled" [class]="btn.args.cssClass"
+    [addOnProgress]="btn.args.progress.type" [progressColor]="btn.args.progress.color" [hidden]="btn.args.hidden"
+    [progressMode]="btn.args.progress.mode" [progressValue]="btn.args.progress.value" [style.order]="btn.args.order"
+    [progressPosition]="btn.args.progress.position" [progressVisible]="btn.args.progress.visible"
+    (click)="btnClicked(btn)">
+
+    @if(btn.args.icon){
+    <mat-icon>{{btn.args.icon}}</mat-icon>
+    }
+    @if(btn.args.text){
+    <span> {{btn.args.text|novaTranslate}}</span>
+    }
+</button>
+}
+}
